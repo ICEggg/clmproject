@@ -1,0 +1,4 @@
+server:
+  servlet:
+    context-path: /pro
+  port: 8082

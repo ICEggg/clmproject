@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    active: dev #调用application-dev.yml 如果写的是pro，调用的就是application-pro.yml
+  datasource: #primary和secondary为两个数据源，这两个对应的包下，可以调用对应的库
+    primary:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/mytable?useUnicode=true&characterEncoding=UTF-8&createDatabaseIfNotExist=true
+      password: root
+      username: root
+    secondary:
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&createDatabaseIfNotExist=true
+      password: root
+      username: root
+  jpa :
+    hibernate:
+      ddl-auto: update
+    show-sql: true

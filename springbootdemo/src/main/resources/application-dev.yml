@@ -1,0 +1,13 @@
+server:
+  servlet:
+    context-path: /dev
+  port: 8081
+pageSize: 100
+devName: aaa
+
+developer:
+  name: bbb
+  id: 1
+  age: 11
+
+testport: 1111
