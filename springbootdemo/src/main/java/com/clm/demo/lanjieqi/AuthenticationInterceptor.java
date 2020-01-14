@@ -12,15 +12,23 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * 拦截器
+ * 引用场景：登录模块，拦截请求头中是否带token
+ */
 @Component
 public class AuthenticationInterceptor implements HandlerInterceptor {
 
     @Autowired
     private JwtUtil jwtUtil;
 
-    //进入api之前要做的事
+    //拦截请求，进入api之前要做的事
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
+        System.out.println("拦截器preHandle："+"com.clm.demo.lanjieqi.AuthenticationInterceptor");
+        return true;
+        //验证token的逻辑（有点小问题：验证不通过要返回给前台提示信息没做，能用的）
+        /*System.out.println("进入拦截器："+"com.clm.demo.lanjieqi.AuthenticationInterceptor");
         System.out.println(httpServletRequest.getRequestURI());
         String url = httpServletRequest.getRequestURI();
         if(url.contains("/dev/userCon/login") || url.contains("/dev/swagger-ui.html")){
@@ -35,7 +43,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             }
             return true;
         }
-        throw new CommonException(ResultCode.RESULT_ERROR);
+        throw new CommonException(ResultCode.RESULT_ERROR);*/
     }
 
     //api执行之后要做的事
@@ -43,7 +51,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest httpServletRequest,
                            HttpServletResponse httpServletResponse,
                            Object o, ModelAndView modelAndView) throws Exception {
-        System.out.println("一个api执行完了");
+        System.out.println("拦截器postHandle：一个api执行完了");
     }
 
     //全部api执行之后要做的事
@@ -51,6 +59,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     public void afterCompletion(HttpServletRequest httpServletRequest,
                                 HttpServletResponse httpServletResponse,
                                 Object o, Exception e) throws Exception {
-        System.out.println("所有api执行完了");
+        System.out.println("拦截器afterCompletion：所有api执行完了");
     }
 }

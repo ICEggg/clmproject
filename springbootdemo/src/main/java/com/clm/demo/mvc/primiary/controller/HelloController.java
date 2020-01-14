@@ -27,6 +27,12 @@ public class HelloController {
 
     @RequestMapping(value="/hello",method = RequestMethod.GET)
     public String helloSpringBoot(){
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("!!!");
         return "hello springboot";
     }
 

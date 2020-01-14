@@ -2,7 +2,7 @@
 
 2.配置多个数据源：yml文件下的spring.datasource配置多个；com.clm.demo.config包下的3个类
 
-3.用户登录设置token，用拦截器实现。com.clm.demo.lanjieqi.AuthenticationInterceptor
+3.用户登录设置token，用拦截器实现。com.clm.demo.lanjieqi.AuthenticationInterceptor,和com.clm.demo.WebMvcConfig
 
 4.swagger配置，添加SwaggerConfig配置类，SpringbootdemoApplication加上@EnableSwagger2注解，controller里的方法上加
 @ApiOperation（接口描述信息）@ApiImplicitParams（接口接收的参数描述）两个注解
