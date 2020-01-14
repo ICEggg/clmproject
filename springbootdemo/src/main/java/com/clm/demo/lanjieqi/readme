@@ -1,0 +1,34 @@
+拦截器
+1.AuthenticationInterceptor类 是springboot普通拦截器，做的功能是拦截请求是否带token
+2.ControllerInterceptor类 是spring面向切面AOP的拦截器，下面是一些注解的解释
+
+@Aspect 定义在类上，定义这个类是一个切面
+@Pointcut 定义切点，比如定义某个包下的所有方法都要拦截
+
+@Before  在切点方法之前执行
+@After  在切点方法之后执行
+@AfterReturning 切点方法返回后执行
+    如果第一个参数为JoinPoint，则第二个参数为返回值的信息
+    如果第一个参数不为JoinPoint，则第一个参数为returning中对应的参数
+    returning：限定了只有目标方法返回值与通知方法参数类型匹配时才能执行后置返回通知，否则不执行，
+    参数为Object类型将匹配任何目标返回值
+
+@AfterThrowing 切点方法抛异常执行
+    后置异常通知
+    定义一个名字，该名字用于匹配通知实现方法的一个参数名，当目标方法抛出异常返回后，将把目标方法抛出的异常传给通知方法；
+    throwing:限定了只有目标方法抛出的异常与通知方法相应参数异常类型时才能执行后置异常通知，否则不执行，
+    对于throwing对应的通知方法参数为Throwable类型将匹配任何异常。
+
+
+@Around 属于环绕增强，能控制切点执行前，执行后，，用这个注解后，程序抛异常，会影响@AfterThrowing这个注解
+    环绕通知非常强大，可以决定目标方法是否执行，什么时候执行，执行时是否需要替换方法参数，执行完毕是否需要替换返回值。
+    环绕通知第一个参数必须是org.aspectj.lang.ProceedingJoinPoint类型
+
+
+
+
+
+
+
+
+

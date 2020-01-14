@@ -1,0 +1,207 @@
+前端模板引擎
+跨域	https	tcp	rpc
+mvn install
+npm
+body，header
+jsonp
+nser快速创建一个服务器
+url中的hash
+https://blog.csdn.net/weixin_42218847/article/details/81488075
+linux make命令
+nohup
+ssl安全证书 	知乎回答参考http://dwz.cn/7joMhq
+jwt
+npm run build
+base64
+gbk
+hash值
+es6
+静态属性，动态属性
+bable
+export default
+module.exports
+css !important
+开源协议
+线程域，threadlocal
+lambada
+
+
+
+
+
+this和class
+ThreadLocal会导致内存泄漏？？
+数据库的高并发
+哈希表
+枚举，元组
+hashtable，hashmap，treemap
+linklist，arraylist
+skiplist
+CopyOnWriteArrayList
+存储过程
+java 转译符
+java >>>是什么
+idea怎么看一个类有多少个构造函数
+Spring Boot集成Spring Security
+cas	企业认证服务	单点登录，企业级
+cms	内容管理系统
+java自定义注解
+springcloud
+异常全局处理
+protect作用域
+springboot nosession问题
+自定义返回异常
+多线程排序
+swagger
+接口里定义静态方法，default method，抽象方法
+System.in.read
+springboot监听器，拦截器，过滤器		过滤器>监听器>拦截器
+
+Spring Boot 中使用监听器
+https://blog.csdn.net/taojin12/article/details/88338199
+
+ThreadLocal
+	ThreadLocal为每个使用该变量的线程提供独立的变量副本，所以每一个线程都可以独立地改变自己的副本，而不会影响其它线程所对应的副本
+	通常情况下，我们创建的变量是可以被任何一个线程访问并且修改的。而使用ThreadLocal创建的变量只能被当前线程访问，其他线程无法访问和修改。
+	ThreadLocal为每个使用该变量的线程提供独立的变量副本,所以每一个线程都可以独以地改变自己的副本,而不会影响其它线程所对应的副本
+
+
+forkjoinpool和newfixthreadpool的差别
+
+
+spring 注解 之 AOP基于@Aspect的AOP配置
+https://www.cnblogs.com/aspirant/p/10288903.html
+
+
+
+
+
+
+
+
+
+
+
+
+sql文件要改的地方：
+oper_codeinfo	code_value大小改成255		code_cname 改成1024
+标准字段表，最大出现次数改成varchar
+tb_stdgl_schemafield 	最大出现次数改成varchar
+nginx.conf 	http块下增加	client_max_body_size 100M
+
+文档上传，翻到下一页的时候，点击查看列表就回到第一个了
+文档上传，点击码表的下一页，标准也到下一页了
+
+idea maven工具栏plugins报错
+
+单点登录
+WebSecurityConfigurerAdapter
+Request Payload
+
+*****************************
+
+标准审核，模态框点击下一页，表格也会跳到下一页
+统计管理，现有模型数和已检测模型数
+
+文档上传首页刷新，页数还是第二页
+
+*****************************
+
+笔记本散热硅脂，京东搜TF8
+
+
+
+swagger	
+
+
+
+
+
+
+
+
+
+
+delete from oper_tb_stdgl_code_info;
+delete from oper_tb_stdgl_field_code;
+delete from oper_tb_stdgl_object;
+delete from oper_tb_stdgl_schemafield;
+delete from oper_tb_stdgl_schemamodule;
+delete from std_model_relation_table;
+delete from tb_stdgl_schemafield;
+delete from tb_stdgl_schemamodule;
+delete from tb_stdgl_filetable;
+delete from tb_stdgl_category;
+INSERT INTO `metadata_management`.`tb_stdgl_category`(`id`, `name`, `parent_id`, `creator`, `create_time`, `pxh`, `status`, `ismodel`) VALUES ('0', '目录', '-1', '2001', '2019-11-03 14:48:00', 0, '1', 1);
+INSERT INTO `metadata_management`.`tb_stdgl_category`(`id`, `name`, `parent_id`, `creator`, `create_time`, `pxh`, `status`, `ismodel`) VALUES ('1', '文档上传', '0', '2001', '2019-11-03 14:48:00', 1, '1', 1);
+INSERT INTO `metadata_management`.`tb_stdgl_category`(`id`, `name`, `parent_id`, `creator`, `create_time`, `pxh`, `status`, `ismodel`) VALUES ('2', '数据库导入标准', '0', '2001', '2019-11-03 14:48:00', 2, '1', 1);
+
+
+
+
+
+#模型列表
+getAllRegisteredModels_url: 10.1.1.23:18080/ywsjglprj/model/getAllRegisteredModels
+#模型字段
+getModelInfo_url: 10.1.1.23:18080/ywsjglprj/model/getModelInfo
+
+
+
+
+
+
+webpack 把js，css等文件整合起来
+babel	把高等级的语法，解析成webpack能解析的语法
+
+
+
+
+nginx	client_max_body_size 100m;
+
+
+springboot
+spring.http.multipart.max-file-size=10MB
+spring.http.multipart.max-request-size=10MB
+
+spring.servlet.multipart.max-file-size=10MB
+spring.servlet.multipart.max-request-size=100MB
+
+
+
+做完的
+标准首页，搜索，改成后端搜索
+文档上传，编辑，标准第二页，删除按钮，删除的不是指定的一行
+标准管理首页，搜索，最好是全文搜索，其次是按中文名搜索
+文档上传，编辑，删除码表的时候，点击一个删除，把一整个码表都删了
+检测结果对外接口，除了字段信息，还要加上标准名，obj名，文件名（只要中文名，其他多余信息不要）
+模型列表，查看页面，要加上这个模型对应的检测的标准信息
+检测结果展示，符合和相似的字段，要展示出是和哪个标准的哪个字段相似，可能要再加一个按钮
+标准首页，点击目录，右边显示目录下的标准，（检查一下）
+点击目录的时候，显示当前目录的排序号，这个排序号显示的有问题
+目录，新增的时候，不同的父目录下，添加名称相同的子目录的时候，不能添加
+码表首页，加载太慢，看做成后端分页
+码表英文名改成：前缀_dict1 (后面数字递增)
+标准检测，左边，增加一个下拉框，选择目录，选中目录，出现对应目录下的模型
+	  右边，也要加上目录
+
+
+
+
+没做完的
+文档上传，编辑页面，码表，分页，选择显示全部的时候，很慢。查看页面的分页，选择显示全部的时候，就很快
+标准审核的全选，只是选中了当前页的所有数据，并不是表格里全部的数据
+模型列表，当模型变化的时候，想想页面怎么显示，重新检测还是什么之类的
+所有的目录都按排序号展示
+文档上传，点击确认申请，按钮禁用，防止误触
+
+
+
+
+
+
+
+补助1200
+
+
+
+
