@@ -24,11 +24,6 @@ css !important
 开源协议
 线程域，threadlocal
 lambada
-
-
-
-
-
 this和class
 ThreadLocal会导致内存泄漏？？
 数据库的高并发
@@ -65,143 +60,41 @@ ThreadLocal
 	通常情况下，我们创建的变量是可以被任何一个线程访问并且修改的。而使用ThreadLocal创建的变量只能被当前线程访问，其他线程无法访问和修改。
 	ThreadLocal为每个使用该变量的线程提供独立的变量副本,所以每一个线程都可以独以地改变自己的副本,而不会影响其它线程所对应的副本
 
-
 forkjoinpool和newfixthreadpool的差别
 
 
 spring 注解 之 AOP基于@Aspect的AOP配置
 https://www.cnblogs.com/aspirant/p/10288903.html
 
+玩转SpringBoot之定时任务详解
+https://www.cnblogs.com/mmzs/p/10161936.html
 
-
-
-
-
-
-
-
-
-
-
-sql文件要改的地方：
-oper_codeinfo	code_value大小改成255		code_cname 改成1024
-标准字段表，最大出现次数改成varchar
-tb_stdgl_schemafield 	最大出现次数改成varchar
-nginx.conf 	http块下增加	client_max_body_size 100M
-
-文档上传，翻到下一页的时候，点击查看列表就回到第一个了
-文档上传，点击码表的下一页，标准也到下一页了
-
-idea maven工具栏plugins报错
-
-单点登录
-WebSecurityConfigurerAdapter
-Request Payload
-
-*****************************
-
-标准审核，模态框点击下一页，表格也会跳到下一页
-统计管理，现有模型数和已检测模型数
-
-文档上传首页刷新，页数还是第二页
-
-*****************************
-
+springboot 限制用户访问次数
+springboot 统计每个接口调用的次数
 笔记本散热硅脂，京东搜TF8
-
-
-
 swagger	
+static 什么时候加载的
+反射
+Class.forname(""):这是只把class落到内存里，但是不实例化
+枚举
+静态内部类
+接口里的静态方法
+抽象类
 
 
+单例模式应用场景
+策略模式应用场景，策略模式，接口的实现类，也可以做成单例。。。（想一下）
+工厂模式应用场景
 
 
-
-
-
-
-
-
-delete from oper_tb_stdgl_code_info;
-delete from oper_tb_stdgl_field_code;
-delete from oper_tb_stdgl_object;
-delete from oper_tb_stdgl_schemafield;
-delete from oper_tb_stdgl_schemamodule;
-delete from std_model_relation_table;
-delete from tb_stdgl_schemafield;
-delete from tb_stdgl_schemamodule;
-delete from tb_stdgl_filetable;
-delete from tb_stdgl_category;
-INSERT INTO `metadata_management`.`tb_stdgl_category`(`id`, `name`, `parent_id`, `creator`, `create_time`, `pxh`, `status`, `ismodel`) VALUES ('0', '目录', '-1', '2001', '2019-11-03 14:48:00', 0, '1', 1);
-INSERT INTO `metadata_management`.`tb_stdgl_category`(`id`, `name`, `parent_id`, `creator`, `create_time`, `pxh`, `status`, `ismodel`) VALUES ('1', '文档上传', '0', '2001', '2019-11-03 14:48:00', 1, '1', 1);
-INSERT INTO `metadata_management`.`tb_stdgl_category`(`id`, `name`, `parent_id`, `creator`, `create_time`, `pxh`, `status`, `ismodel`) VALUES ('2', '数据库导入标准', '0', '2001', '2019-11-03 14:48:00', 2, '1', 1);
-
-
-
-
-
-#模型列表
-getAllRegisteredModels_url: 10.1.1.23:18080/ywsjglprj/model/getAllRegisteredModels
-#模型字段
-getModelInfo_url: 10.1.1.23:18080/ywsjglprj/model/getModelInfo
-
-
-
-
-
+完美的工厂模式，用到spring
+工厂方法：形容词用接口，名词用抽象类
+责任链
+idea maven工具栏plugins报错
+笔记本散热硅脂，京东搜TF8
 
 webpack 把js，css等文件整合起来
 babel	把高等级的语法，解析成webpack能解析的语法
-
-
-
-
-nginx	client_max_body_size 100m;
-
-
-springboot
-spring.http.multipart.max-file-size=10MB
-spring.http.multipart.max-request-size=10MB
-
-spring.servlet.multipart.max-file-size=10MB
-spring.servlet.multipart.max-request-size=100MB
-
-
-
-做完的
-标准首页，搜索，改成后端搜索
-文档上传，编辑，标准第二页，删除按钮，删除的不是指定的一行
-标准管理首页，搜索，最好是全文搜索，其次是按中文名搜索
-文档上传，编辑，删除码表的时候，点击一个删除，把一整个码表都删了
-检测结果对外接口，除了字段信息，还要加上标准名，obj名，文件名（只要中文名，其他多余信息不要）
-模型列表，查看页面，要加上这个模型对应的检测的标准信息
-检测结果展示，符合和相似的字段，要展示出是和哪个标准的哪个字段相似，可能要再加一个按钮
-标准首页，点击目录，右边显示目录下的标准，（检查一下）
-点击目录的时候，显示当前目录的排序号，这个排序号显示的有问题
-目录，新增的时候，不同的父目录下，添加名称相同的子目录的时候，不能添加
-码表首页，加载太慢，看做成后端分页
-码表英文名改成：前缀_dict1 (后面数字递增)
-标准检测，左边，增加一个下拉框，选择目录，选中目录，出现对应目录下的模型
-	  右边，也要加上目录
-
-
-
-
-没做完的
-文档上传，编辑页面，码表，分页，选择显示全部的时候，很慢。查看页面的分页，选择显示全部的时候，就很快
-标准审核的全选，只是选中了当前页的所有数据，并不是表格里全部的数据
-模型列表，当模型变化的时候，想想页面怎么显示，重新检测还是什么之类的
-所有的目录都按排序号展示
-文档上传，点击确认申请，按钮禁用，防止误触
-
-
-
-
-
-
-
-补助1200
-
 
 
 
