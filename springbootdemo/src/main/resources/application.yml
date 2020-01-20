@@ -16,3 +16,10 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  application:
+    name: microservice-stdcode  #配置应用的名称
+  #这是 springboot2.0版本 配置上传文件的大小，还没测试过
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB

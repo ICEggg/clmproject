@@ -1,7 +1,7 @@
 拦截器
 1.AuthenticationInterceptor类 是springboot普通拦截器，做的功能是拦截请求是否带token
-2.ControllerInterceptor类 是spring面向切面AOP的拦截器，下面是一些注解的解释
 
+2.ControllerInterceptor类 是spring面向切面AOP的拦截器，下面是一些注解的解释
 @Aspect 定义在类上，定义这个类是一个切面
 @Pointcut 定义切点，比如定义某个包下的所有方法都要拦截
 

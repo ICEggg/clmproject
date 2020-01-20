@@ -26,6 +26,7 @@ public class WordController extends BaseController {
         return wordService.wordList();
     }
 
+    //这是把id加在请求路径后，@PathVariable
     @GetMapping(value="/getwords/{id}")
     @ApiOperation(value="根据id获取word")
     @ApiImplicitParams({
