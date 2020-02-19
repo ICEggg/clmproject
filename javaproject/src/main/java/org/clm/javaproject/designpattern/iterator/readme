@@ -1,0 +1,6 @@
+写了数组和链表的实现
+
+当Arraylist_和LinkedList_都实现Collection接口的时候，因为多态，
+这时用户想把数组换成链表，只需要把new Arraylist_ 改成 new LinkedList_就行了
+
+如果用户要遍历数组或者链表的话，比如hashset等其他结构，应该每个容器自己实现遍历的方法(详细看Main.java)

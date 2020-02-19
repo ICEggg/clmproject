@@ -1,5 +1,12 @@
 package org.clm.javaproject.callback;
 
+/**
+ * 回调函数的例子：
+ * 比如：老师问学生一个问题，然后学生要花时间想答案，或者先做自己的事，再想答案，
+ * 不知道这中间要花多少时间，
+ * 所以老师不能在这一直等学生想出答案，这段时间做自己的事，
+ * 当学生做完事情，想出答案后，自己告诉老师
+ */
 public class Teacher implements CallBack{
     private Student student;
 

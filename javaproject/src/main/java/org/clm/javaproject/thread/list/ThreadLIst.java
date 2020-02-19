@@ -7,6 +7,41 @@ import java.util.List;
  */
 public class ThreadLIst {
 
+	public static void main(String[] args) {
+		int listsize = 17;	//list有多少数据
+		int index = 3;	//	启动多少个线程
+		//造点数据
+		List<Integer> list = new ArrayList<>();
+		for (int i = 0; i < listsize; i++) {
+			list.add(i);
+		}
+
+
+		way(list,index);
+
+	}
+
+	static void way(List<Integer> list ,int index){
+		int listsize = list.size();
+		if(index > listsize){
+			index = listsize;
+		}
+
+		int end = 0;
+		int basenum = list.size()/index;
+		int remaindernum = list.size()%index;
+		for (int i = 0; i < index; i++) {
+			int start = end;
+			end = start + basenum;
+			if(i == index-1){
+				end = start + basenum + remaindernum;
+			}
+			//System.out.println(start +"--------"+end);
+			myt m = new myt("这是线程"+String.valueOf(i),list,start,end);
+			new Thread(m).start();
+		}
+	}
+
 	static class myt implements Runnable{
 		private static List<Integer> list;
 		private String threadname;
@@ -28,36 +63,7 @@ public class ThreadLIst {
 		}
 	}
 
-	public static void main(String[] args) {
-		int listsize = 17;
-		int index = 3;
 
-		List<Integer> list = new ArrayList<>();
-		for (int i = 0; i < listsize; i++) {
-			list.add(i);
-		}
-
-		if(index > listsize){
-			index = listsize;
-		}
-
-		int end = 0;
-		int basenum = list.size()/index;
-		int remaindernum = list.size()%index;
-		for (int i = 0; i < index; i++) {
-			int start = end;
-			end = start + basenum;
-			if(i == index-1){
-				end = start + basenum + remaindernum;
-			}
-			//System.out.println(start +"--------"+end);
-			myt m = new myt("这是线程"+String.valueOf(i),list,start,end);
-			new Thread(m).start();
-		}
-
-
-
-	}
 
 	
 }
