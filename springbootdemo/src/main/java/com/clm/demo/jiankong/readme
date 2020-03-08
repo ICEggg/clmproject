@@ -1,0 +1,35 @@
+springboot 监控器actuator
+打开监控actuator 127.0.0.1:9001/monitor
+
+添加maven依赖，添加配置文件即可用
+配置文件添加：
+management:
+  server:
+    port: 9001   #actuator端口
+  endpoints:  #修改访问路径  2.0之前默认是/   2.0默认是 /actuator  可以通过这个属性值修改
+    web:
+      base-path: /monitor
+      exposure:
+        include: "*"   #开放所有页面节点  默认只开启了health、info两个节点
+    health:
+      show-details: always   #显示健康具体信息  默认不会显示详细信息,(好像没用啊)
+
+
+
+访问参数：
+actuator	为其他端点提供“发现页面”。要求 Spring HATEOAS 在 classpath 路径上。	需要
+auditevents	陈列当前应用程序的审计事件信息。	需要
+autoconfig	展示自动配置信息并且显示所有自动配置候选人以及他们“被不被”应用的原因。	需要
+beans	显示应用程序中所有 Spring bean 的完整列表。	需要
+configprops	显示所有配置信息。	需要
+dump	所有线程。	需要
+env	陈列所有的环境变量。	需要
+flyway	Shows any Flyway database migrations that have been applied.	需要
+health	显示应用程序运行状况信息	不需要
+info	显示应用信息。	不需要
+loggers	显示和修改应用程序中的 loggers 配置。	需要
+liquibase	显示已经应用的任何 Liquibase 数据库迁移。	需要
+metrics	显示当前应用程序的“指标”信息。	需要
+mappings	显示所有@RequestMapping 的 url 整理列表。	需要
+shutdown	关闭应用（默认情况下不启用）。	需要
+trace	显示跟踪信息（默认最后 100 个 HTTP 请求）。	需要
