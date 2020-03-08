@@ -7,7 +7,7 @@
 4.swagger配置，添加SwaggerConfig配置类，SpringbootdemoApplication加上@EnableSwagger2注解，controller里的方法上加
 @ApiOperation（接口描述信息）@ApiImplicitParams（接口接收的参数描述）两个注解
 
-5.spring AOP面向切面的例子，com.clm.demo.lanjieqi.LogInterceptor
+5.clm AOP面向切面的例子，com.clm.demo.lanjieqi.LogInterceptor
 
 6.监听一个文件，或者，监听一个文件夹下的所有文件的变化，com.clm.demo.filelistener，使用了commons-io这个依赖
 

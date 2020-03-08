@@ -23,3 +23,22 @@ spring:
     multipart:
       max-file-size: 100MB
       max-request-size: 100MB
+
+#打开监控actuator 127.0.0.1:9001/monitor  制定了端口和basepath
+management:
+  server:
+    port: 9001   #actuator端口
+  endpoints:  #修改访问路径  2.0之前默认是/   2.0默认是 /actuator  可以通过这个属性值修改
+    web:
+      base-path: /monitor
+      exposure:
+        include: "*"   #开放所有页面节点  默认只开启了health、info两个节点
+    health:
+      show-details: always   #显示健康具体信息  默认不会显示详细信息,(好像没用啊)
+
+#打开监控actuator，简单版，127.0.0.1:8083/dev/actuator
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
