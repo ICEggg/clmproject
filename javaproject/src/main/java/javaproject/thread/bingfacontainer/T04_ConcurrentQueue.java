@@ -9,8 +9,6 @@ import java.util.concurrent.CountDownLatch;
  * Queue的实现
  * 并发情况下用这两种队列：
  * ConcurrentLinkedQueue，BlockingQueue
- *
- *
  */
 public class T04_ConcurrentQueue {
     public static void main(String[] args) {

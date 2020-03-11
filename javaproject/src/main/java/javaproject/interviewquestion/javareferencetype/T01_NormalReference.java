@@ -1,6 +1,5 @@
 package javaproject.interviewquestion.javareferencetype;
 
-import javax.validation.constraints.Null;
 import java.io.IOException;
 
 /**
