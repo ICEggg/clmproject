@@ -3,7 +3,6 @@ package javaproject.java.csv.opencsv;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-
 import au.com.bytecode.opencsv.CSVReader;
 
 public class OpenCsvReadFile {
