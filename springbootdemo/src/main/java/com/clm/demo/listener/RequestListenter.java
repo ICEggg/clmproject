@@ -35,7 +35,7 @@ public class RequestListenter implements ServletRequestListener {
         HttpServletRequest request = (HttpServletRequest) servletRequestEvent.getServletRequest();
         //System.out.println("session id为："+request.getRequestedSessionId());
         System.out.println("request url为："+request.getRequestURL());
-        //request.setAttribute("name", "clm");
+        //request.setAttribute("name", "mashibing");
 
     }
 

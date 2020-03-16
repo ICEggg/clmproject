@@ -19,7 +19,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 //配置监听器如果用WebListener注解的话，就开启这个
-//@ServletComponentScan(basePackages ="com.clm.demo.listener")
+//@ServletComponentScan(basePackages ="com.mashibing.demo.listener")
 @SpringBootApplication      //springboot 启动类必须有这个注解
 @EnableSwagger2        //开启swagger
 @EnableScheduling   //开启这个注解，会找到@Scheduled注解的类，开启定时任务

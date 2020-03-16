@@ -56,7 +56,7 @@ public class PiLiang_BulkTest {
         conf.addResource(new Path(args[0]));
         conf.set("hbase.fs.tmp.dir", "partitions_" + UUID.randomUUID());
         String tableName = "person";
-        String input = "hdfs://nameservice1/hrds/clm/testdata/person";
+        String input = "hdfs://nameservice1/hrds/mashibing/testdata/person";
         String output = "hdfs://nameservice1/tmp/pres";
         System.out.println("table : " + tableName);
         HTable table;

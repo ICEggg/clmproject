@@ -43,7 +43,7 @@ public class PrimarySourceConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryPrimary(EntityManagerFactoryBuilder builder) {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = builder
                 .dataSource(primaryDataSource)
-                .packages("com.clm.demo.mvc.primiary.entity") //设置实体类所在位置
+                .packages("com.mashibing.demo.mvc.primiary.entity") //设置实体类所在位置
                 .persistenceUnit("primaryPersistenceUnit")
                 .build();
         entityManagerFactory.setJpaProperties(jpaProperties);

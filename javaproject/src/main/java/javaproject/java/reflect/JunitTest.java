@@ -119,7 +119,7 @@ public class JunitTest{
         //由于这里不能带参数，所以你要实例化的这个类Person，一定要有无参构造函数
         Person person = (Person) class1.newInstance();
         person.setAge(27);
-        person.setName("clm");
+        person.setName("mashibing");
         System.out.println("Test3: " + person.getName() + " : " + person.getAge());
     }
 
@@ -141,9 +141,9 @@ public class JunitTest{
             e.printStackTrace();
         }
         person1.setAge(28);
-        person1.setName("clm");
+        person1.setName("mashibing");
 
-        person2 = (Person) constructors[1].newInstance(29, "clm");
+        person2 = (Person) constructors[1].newInstance(29, "mashibing");
 
         System.out.println("Test4: " + person1.getName() + " : " + person1.getAge() + "  ,   " + person2.getName() + " : " + person2.getAge());
 

@@ -26,7 +26,7 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .select()
                 // 自行修改为自己的包路径
-                .apis(RequestHandlerSelectors.basePackage("com.clm.demo"))
+                .apis(RequestHandlerSelectors.basePackage("com.mashibing.demo"))
                 .paths(PathSelectors.any())
                 .build()
                 .securitySchemes(securitySchemes());

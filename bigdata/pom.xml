@@ -221,7 +221,7 @@
              </descriptorRefs>
              <archive>
                   <manifest>
-                       <mainClass>org.clm.kafka.avro.AvroToKafkaConsumer</mainClass>
+                       <mainClass>org.mashibing.kafka.avro.AvroToKafkaConsumer</mainClass>
                   </manifest>
              </archive>
         </configuration>

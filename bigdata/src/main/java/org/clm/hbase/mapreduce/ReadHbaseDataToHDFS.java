@@ -68,7 +68,7 @@ public static void main(String[] args) throws Exception {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(DoubleWritable.class);
         
-        Path outputPath = new Path("/hrds/clm/testdata/hbmrreadresult");
+        Path outputPath = new Path("/hrds/mashibing/testdata/hbmrreadresult");
         
         if(fs.exists(outputPath)) {
             fs.delete(outputPath,true);

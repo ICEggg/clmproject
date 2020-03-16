@@ -25,10 +25,10 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     //拦截请求，进入api之前要做的事
     @Override
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
-        System.out.println("拦截器preHandle："+"com.clm.demo.lanjieqi.AuthenticationInterceptor");
+        System.out.println("拦截器preHandle："+"com.mashibing.demo.lanjieqi.AuthenticationInterceptor");
         return true;
         //验证token的逻辑（有点小问题：验证不通过要返回给前台提示信息没做，能用的）
-        /*System.out.println("进入拦截器："+"com.clm.demo.lanjieqi.AuthenticationInterceptor");
+        /*System.out.println("进入拦截器："+"com.mashibing.demo.lanjieqi.AuthenticationInterceptor");
         System.out.println(httpServletRequest.getRequestURI());
         String url = httpServletRequest.getRequestURI();
         if(url.contains("/dev/userCon/login") || url.contains("/dev/swagger-ui.html")){

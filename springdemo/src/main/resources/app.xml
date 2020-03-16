@@ -3,9 +3,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd">
 
-
-    <bean id="tank" class="clm.Tank"></bean>
-    <bean id="timeProxy" class="clm.TimeProxy"></bean>
+    <!--马士兵一个spring切面的例子-->
+    <bean id="tank" class="mashibing.Tank"></bean>
+    <bean id="timeProxy" class="mashibing.TimeProxy"></bean>
 
     <!--这是注解的方式，在代理类那里添加注解-->
     <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
@@ -14,7 +14,7 @@
     <!--<aop:config>
         <aop:aspect id="time" ref="timeProxy">
             &lt;!&ndash;execution 后的空格 一定要加，不然会报错，找不到tank类 &ndash;&gt;
-            <aop:pointcut id="onmove" expression="execution (void clm.Tank.move())"/>
+            <aop:pointcut id="onmove" expression="execution (void mashibing.Tank.move())"/>
             <aop:before method="before" pointcut-ref="onmove"></aop:before>
             <aop:after method="after" pointcut-ref="onmove"></aop:after>
         </aop:aspect>

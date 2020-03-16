@@ -1,19 +1,19 @@
 1.静态变量，静态块，引用yml文件里的值（SpringContextUtil，StaticEntity，StaticUtil）
 
-2.配置多个数据源：yml文件下的spring.datasource配置多个；com.clm.demo.config包下的3个类
+2.配置多个数据源：yml文件下的spring.datasource配置多个；com.mashibing.demo.config包下的3个类
 
-3.用户登录设置token，用拦截器实现。com.clm.demo.lanjieqi.AuthenticationInterceptor,和com.clm.demo.WebMvcConfig
+3.用户登录设置token，用拦截器实现。com.mashibing.demo.lanjieqi.AuthenticationInterceptor,和com.mashibing.demo.WebMvcConfig
 
 4.swagger配置，添加SwaggerConfig配置类，SpringbootdemoApplication加上@EnableSwagger2注解，controller里的方法上加
 @ApiOperation（接口描述信息）@ApiImplicitParams（接口接收的参数描述）两个注解
 
-5.clm AOP面向切面的例子，com.clm.demo.lanjieqi.LogInterceptor
+5.mashibing AOP面向切面的例子，com.mashibing.demo.lanjieqi.LogInterceptor
 
-6.监听一个文件，或者，监听一个文件夹下的所有文件的变化，com.clm.demo.filelistener，使用了commons-io这个依赖
+6.监听一个文件，或者，监听一个文件夹下的所有文件的变化，com.mashibing.demo.filelistener，使用了commons-io这个依赖
 
-7.自定义异常，com.clm.demo.CommonException，不知道什么时候写的，还没验证过
+7.自定义异常，com.mashibing.demo.CommonException，不知道什么时候写的，还没验证过
 
-8.springboot 监听器，com.clm.demo.listener      执行顺序：过滤器>监听器>拦截器
+8.springboot 监听器，com.mashibing.demo.listener      执行顺序：过滤器>监听器>拦截器
 
-9.springboot 定时任务，com.clm.demo.listener.ScheduleTask，这是普通定时器，可以用@EnableAsync开启多线程
-                       com.clm.demo.listener.ScheduleTaskByInterface，这是可以动态修改定时时间的定时器，还不能用，还没调好
+9.springboot 定时任务，com.mashibing.demo.listener.ScheduleTask，这是普通定时器，可以用@EnableAsync开启多线程
+                       com.mashibing.demo.listener.ScheduleTaskByInterface，这是可以动态修改定时时间的定时器，还不能用，还没调好

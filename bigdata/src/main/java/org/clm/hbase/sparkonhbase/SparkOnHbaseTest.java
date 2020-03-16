@@ -100,9 +100,9 @@ public class SparkOnHbaseTest {
 				KeyValue kv = new KeyValue(Bytes.toBytes(split[0]), Bytes.toBytes("info"), Bytes.toBytes("name"), Bytes.toBytes(split[1]));
 				return new Tuple2<ImmutableBytesWritable, KeyValue>(new ImmutableBytesWritable(Bytes.toBytes(split[0])), kv);
 			});
-			maprdd.saveAsNewAPIHadoopFile("/hrds/clm/testdata/test1",ImmutableBytesWritable.class, KeyValue.class, HFileOutputFormat2.class,hbaseconfig);
+			maprdd.saveAsNewAPIHadoopFile("/hrds/mashibing/testdata/test1",ImmutableBytesWritable.class, KeyValue.class, HFileOutputFormat2.class,hbaseconfig);
 			LoadIncrementalHFiles bulkLoader  = new LoadIncrementalHFiles(hbaseconfig);
-			bulkLoader.doBulkLoad(new Path("/hrds/clm/testdata/test1"), table);
+			bulkLoader.doBulkLoad(new Path("/hrds/mashibing/testdata/test1"), table);
 			jsc.close();
 		} catch (IOException e) {
 			e.printStackTrace();

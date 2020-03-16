@@ -25,7 +25,7 @@ import java.util.Map;
 public class LogInterceptor {
     static Logger logger = LoggerFactory.getLogger(LogInterceptor.class);
 
-    static final String pCutStr = "execution(* com.clm.demo.mvc.*..*(..))";
+    static final String pCutStr = "execution(* com.mashibing.demo.mvc.*..*(..))";
 
     //定义切点
     @Pointcut(value = pCutStr)

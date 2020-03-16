@@ -61,8 +61,8 @@ public class apacheWordCount {
 		job.setOutputValueClass(IntWritable.class);
 		FileInputFormat.addInputPath(job, new Path(args[0]));
 		FileOutputFormat.setOutputPath(job,  new Path(args[1]));
-//		FileInputFormat.addInputPath(job, new Path("hdfs://nameservice1/hrds/clm/testdata/word"));
-//		FileOutputFormat.setOutputPath(job,  new Path("hdfs://nameservice1/hrds/clm/testdata/outwordresult"));
+//		FileInputFormat.addInputPath(job, new Path("hdfs://nameservice1/hrds/mashibing/testdata/word"));
+//		FileOutputFormat.setOutputPath(job,  new Path("hdfs://nameservice1/hrds/mashibing/testdata/outwordresult"));
 		
 //		job.setInputFormatClass(TextInputFormat.class);
 //		job.setOutputFormatClass(TextOutputFormat.class);

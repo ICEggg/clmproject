@@ -10,7 +10,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
        Msg msg = new Msg();
-       msg.setMsg("<script>,clm.com,大家都是996,:)");
+       msg.setMsg("<script>,mashibing.com,大家都是996,:)");
 
        FilterChain fc = new FilterChain();
        fc.add(new HTMLFilter())
@@ -114,7 +114,7 @@ class UrlFilter implements Filter{
     @Override
     public boolean doFilter(Msg msg) {
         String r = msg.getMsg();
-        r.replace("clm.com","ccccccc.com");
+        r.replace("mashibing.com","ccccccc.com");
         msg.setMsg(r);
         System.out.println(msg);
         return true;

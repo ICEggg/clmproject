@@ -40,7 +40,7 @@ public class SecondarySourceConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactorySecondary (EntityManagerFactoryBuilder builder) {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = builder
                 .dataSource(secondaryDataSource)
-                .packages("com.clm.demo.mvc.secondary.entity") //设置实体类所在位置
+                .packages("com.mashibing.demo.mvc.secondary.entity") //设置实体类所在位置
                 .persistenceUnit("secondaryPersistenceUnit")
                 .build();
         entityManagerFactory.setJpaProperties(jpaProperties);

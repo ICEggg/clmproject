@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--把对象交给spring管理 定义bean-->
+    <!--spring对bean的管理细节
+        1.创建bean的三种方式
+        2.bean对象的作用范围
+        3.bean对象的生命周期
+    -->
+
+    <!--1、创建Bean的三种方式-->
+    <!--第一种：使用默认的构造函数
+        在spring的配置文件中使用bean标签，用id和class属性后，且没有其他属性标签时，
+        采用的就是默认构造函数创建bean对象
+        如果此类中没有默认无参构造函数，则对象无法创建
+    -->
+    <bean id="accountService" class="clm.service.AccountServiceImpl"></bean>
+    <bean id="accountDao" class="clm.dao.AccountDaoImpl"></bean>
+
+    <!--第二种方式：使用普通工厂中的方法创建对象（使用某个类中的方法创建对象，并存入spring容器）-->
+<!--    <bean id="instanceFactory" class="clm.factory.InstanceFactory"></bean>-->
+<!--    <bean id="accountService" factory-bean="instanceFactory" factory-method="getAccountService"></bean>-->
+
+    <!--第三种方式：使用工厂中的  静态方法  创建对象，（使用某个类中的静态方法创建对象，并存入spring容器）-->
+<!--    <bean id="accountService" class="clm.factory.StaticFactory" factory-method="getAccountService"></bean>-->
+
+    <!-- 2、bean的作用范围调整
+        bean标签的scope属性：
+        作用：用于指定bean的作用范围
+        取值：
+            singleton   创建单例对象（默认）
+            prototype   多例的，new了几次，就是创建多少次对象
+            request     web应用的请求范围
+            session     web应用的会话范围
+            global-session  集群环境的会话范围（全局会话范围），当不是集群环境时，这个就是session
+    -->
+<!--    <bean id="accountService" class="clm.service.AccountServiceImpl" scope="singleton"></bean>-->
+
+    <!--3、bean对象的生命周期
+            单例对象
+                出生：当容器创建是出生
+                活着：只要容器在，就一直活着
+                死亡：容器销毁，对象消亡
+                总结：单例对象的生命周期和容器相同
+                init-method:对象初始化方法，destroy-method：对象销毁方法
+                把ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");换成ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml");
+                然后就可以调用as.close(),手动关闭ring器。（不关闭也会执行destroy-method，只是看不到，就理解成main线程结束了，destory线程还没执行到，所以看不到）
+            多例对象
+                scope="prototype"
+                出生：当我们使用对象时，spring框架就创建
+                或者：对象只要在使用，就一直活着
+                死亡：当对象长时间不用了，且没有别的对象引用，由java的垃圾回收器回收
+    -->
+    <bean id="accountService" class="clm.service.AccountServiceImpl" scope="singleton"
+    init-method="init" destroy-method="destory"></bean>
+
+</beans>

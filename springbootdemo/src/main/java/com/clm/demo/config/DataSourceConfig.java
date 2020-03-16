@@ -13,7 +13,7 @@ import javax.sql.DataSource;
 public class DataSourceConfig {
     @Bean(name = "primaryDataSource")
     @Qualifier("primaryDataSource")
-    @ConfigurationProperties(prefix = "clm.datasource.primary")
+    @ConfigurationProperties(prefix = "mashibing.datasource.primary")
     public DataSource masterDataSource() {
         return DataSourceBuilder.create().build();
     }
@@ -21,7 +21,7 @@ public class DataSourceConfig {
     @Bean(name = "secondaryDataSource")
     @Qualifier("secondaryDataSource")
     @Primary
-    @ConfigurationProperties(prefix="clm.datasource.secondary")
+    @ConfigurationProperties(prefix="mashibing.datasource.secondary")
     public DataSource secondaryDataSource() {
         return DataSourceBuilder.create().build();
     }

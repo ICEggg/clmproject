@@ -74,8 +74,8 @@ public class ReadHDFSDataToHbaseMR extends Configured implements Tool{
 	        job.setOutputKeyClass(NullWritable.class);
 	        job.setOutputValueClass(Put.class);
 	        
-	        Path inputPath = new Path("/hrds/clm/testdata/student");
-	        Path outputPath = new Path("/hrds/clm/testdata/hbmrresult");
+	        Path inputPath = new Path("/hrds/mashibing/testdata/student");
+	        Path outputPath = new Path("/hrds/mashibing/testdata/hbmrresult");
 	        
 	        if(fs.exists(outputPath)) {
 	            fs.delete(outputPath,true);
