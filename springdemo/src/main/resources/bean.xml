@@ -16,15 +16,15 @@
         采用的就是默认构造函数创建bean对象
         如果此类中没有默认无参构造函数，则对象无法创建
     -->
-    <bean id="accountService" class="clm.service.AccountServiceImpl"></bean>
-    <bean id="accountDao" class="clm.dao.AccountDaoImpl"></bean>
+<!--    <bean id="accountService" class="clm.ioc.service.AccountServiceImpl11"></bean>-->
+    <bean id="accountDao" class="clm.ioc.dao.AccountDaoImpl"></bean>
 
     <!--第二种方式：使用普通工厂中的方法创建对象（使用某个类中的方法创建对象，并存入spring容器）-->
-<!--    <bean id="instanceFactory" class="clm.factory.InstanceFactory"></bean>-->
+<!--    <bean id="instanceFactory" class="clm.ioc.factory.InstanceFactory"></bean>-->
 <!--    <bean id="accountService" factory-bean="instanceFactory" factory-method="getAccountService"></bean>-->
 
     <!--第三种方式：使用工厂中的  静态方法  创建对象，（使用某个类中的静态方法创建对象，并存入spring容器）-->
-<!--    <bean id="accountService" class="clm.factory.StaticFactory" factory-method="getAccountService"></bean>-->
+<!--    <bean id="accountService" class="clm.ioc.factory.StaticFactory" factory-method="getAccountService"></bean>-->
 
     <!-- 2、bean的作用范围调整
         bean标签的scope属性：
@@ -36,7 +36,7 @@
             session     web应用的会话范围
             global-session  集群环境的会话范围（全局会话范围），当不是集群环境时，这个就是session
     -->
-<!--    <bean id="accountService" class="clm.service.AccountServiceImpl" scope="singleton"></bean>-->
+<!--    <bean id="accountService" class="clm.ioc.service.AccountServiceImpl11" scope="singleton"></bean>-->
 
     <!--3、bean对象的生命周期
             单例对象
@@ -53,7 +53,127 @@
                 或者：对象只要在使用，就一直活着
                 死亡：当对象长时间不用了，且没有别的对象引用，由java的垃圾回收器回收
     -->
-    <bean id="accountService" class="clm.service.AccountServiceImpl" scope="singleton"
-    init-method="init" destroy-method="destory"></bean>
+    <!--<bean id="accountService" class="clm.ioc.service.AccountServiceImpl11" scope="singleton"
+    init-method="init" destroy-method="destory"></bean>-->
 
+
+
+
+
+
+    <!--spring的依赖注入：Dependency Injection
+        IOC的作用：
+            降低程序间的耦合（依赖关系）
+        依赖关系管理：都交给spring来维护
+        当前类要用到其他类的对象时，由spring提供，只需要在配置文件中说明依赖关系的维护
+            就称之为依赖注入。
+        依赖注入
+            能注入的数据有三类
+                基本类型和string
+                其他bean类型（在配置文件中或注解配置过的bean）
+                复杂类型/复合类型
+             注入方式有三种：
+                1、构造函数注入
+                2、set方法注入
+                3、注解注入
+    -->
+
+    <!--
+        1、构造函数注入：
+        使用的标签：constructor-arg
+        标签位置：bean标签内部
+        标签中的属性：
+            type：要注入数据的数据类型，是构造函数中某个参数的参数类型(如果有两个string，就不知道给哪个参数注入了)
+            index: 要注入构造函数中数据的索引位置赋值，索引从0开始
+            name: 给指定构造函数参数名称赋值
+            *****************上面三个是给构造函数赋值，常用********************
+            value: 用于提供基本类型和string类型的数据
+            ref: 用于指定其他的bean类型数据，它指的就是在spring的ioc容器中出现的bean对象
+
+         优势：在获取bean对象时，必须注入数据，否则对象无法创建成功。（类里没有无参构造函数）
+         弊端：创建对象时，用不到的参数，也必须提供。
+
+         这种创建对象只有在创建一个对象，只有少数的构造函数，而且所有参数都要提供的时候，
+         才会用。
+
+         少用
+
+    -->
+    <bean id="accountService1" class="clm.ioc.service.AccountServiceImpl1">
+<!--        <constructor-arg type="java.lang.String" value="test"></constructor-arg>-->
+        <!--<constructor-arg index="0" value="test"></constructor-arg>-->
+        <constructor-arg name="name" value="test"></constructor-arg>
+        <constructor-arg name="age" value="18"></constructor-arg>
+        <constructor-arg name="birthday" ref="now"></constructor-arg><!--日期引用类型，需要用ref，引入日期bean-->
+    </bean>
+
+    <!--  读取全类名，反射创建一个对象，并存入spring的核心容器中，可以用容器id引用它 -->
+    <bean id="now" class="java.util.Date"></bean>
+
+
+    <!--2、set方法注入，              （常用）
+        类的参数都要有set方法      (去掉有参的构造函数)
+        涉及的标签：property
+        出现位置：bean标签内
+        标签的属性：
+            name: set方法名称，setName，就是name="name"。setUsername，就是name="username"
+            value: 用于提供基本类型和string类型的数据
+            ref: 用于指定其他的bean类型数据，它指的就是在spring的ioc容器中出现的bean对象
+
+        优势：
+            创建对象时没有明确的限制，可以直接使用默认构造函数
+        弊端：
+            如果某个成员必须有值，则获取对象有可能set方法没有执行
+            （某个值必须有值，但是你没有写set方法，所以赋值失败，出现弊端，对用于构造方法注入中的每个参数都需要复制）
+            （对象初始化先调用默认构造函数，然后由spring容器调用set方法赋值，单线程不会有问题，多线程下set方法可以被打断，其他线程得到的对象便是不完整的）
+
+    -->
+    <bean id="accountService2" class="clm.ioc.service.AccountServiceImpl2">
+        <property name="name" value="aaa"></property>
+        <property name="age" value="18"></property>
+        <property name="birthday" ref="now2"></property>
+    </bean>
+    <bean id="now2" class="java.util.Date"></bean>
+
+
+    <!--    复杂类型的注入/集合类型的注入
+        用于给list结构集合注入的标签：
+            list，array，set （这三类的标签是可以互换的）
+        用于Map结构结合注入的标签：
+            map，props （这两类标签可以互换）
+        结构相同，标签可以互换
+     -->
+    <bean id="accountService3" class="clm.ioc.service.AccountServiceImpl3">
+        <property name="myStr">
+            <array>
+                <value>aaa</value>
+                <value>bbb</value>
+            </array>
+        </property>
+        <property name="myList">
+            <list>
+                <value>aaa</value>
+                <value>bbb</value>
+            </list>
+        </property>
+        <property name="mySet">
+            <set>
+                <value>aaa</value>
+                <value>bbb</value>
+            </set>
+        </property>
+        <property name="myMap">
+            <map>
+                <entry key="testA" value="aaa"></entry>
+                <entry key="testB">
+                    <value>bbb</value>
+                </entry>
+            </map>
+        </property>
+        <property name="myProps">
+            <props>
+                <prop key="testC">ccc</prop>
+            </props>
+        </property>
+    </bean>
 </beans>

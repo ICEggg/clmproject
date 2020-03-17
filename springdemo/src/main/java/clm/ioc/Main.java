@@ -1,12 +1,9 @@
-package clm;
+package clm.ioc;
 
-import clm.dao.IAccountDao;
-import clm.service.IAccountService;
-import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanFactory;
+import clm.ioc.dao.IAccountDao;
+import clm.ioc.service.IAccountService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.core.io.ClassPathResource;
 
 /**
  * ApplicationContext的三个常用实现类   （注解方式应该是最常用的）
@@ -28,7 +25,7 @@ public class Main {
         //ApplicationContext ac = new FileSystemXmlApplicationContext("D:\\project\\MyProject\\springdemo\\src\\main\\resources\\bean.xml");
 
         //根据id获取bean
-        IAccountService as = ac.getBean("accountService", IAccountService.class);
+        IAccountService as = ac.getBean("accountService1", IAccountService.class);
         IAccountDao adao = ac.getBean("accountDao", IAccountDao.class);
 
         System.out.println(as);
@@ -40,6 +37,12 @@ public class Main {
         BeanFactory factory = new XmlBeanFactory(resource);
         IAccountService as2 = factory.getBean("accountService", IAccountService.class);
         System.out.println(as2);*/
+
+        IAccountService as2 = ac.getBean("accountService2", IAccountService.class);
+        System.out.println("this is as2： "+as2);
+
+        IAccountService as3 = ac.getBean("accountService3", IAccountService.class);
+        System.out.println("this is as3： "+as3.toString());
     }
 
 }

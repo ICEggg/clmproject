@@ -30,6 +30,21 @@
             <version>1.9.4</version>
         </dependency>
 
+        <!-- spring 面向切面 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>5.2.2.RELEASE</version>
+        </dependency>
+
+        <!-- junit 单元测试 -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+
 
     </dependencies>
 
