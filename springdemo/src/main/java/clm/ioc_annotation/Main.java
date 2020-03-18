@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         //ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("bean_annotation.xml");
         //用SpringConfiguration代替bean.xml的话，就用这个
-        ApplicationContext ac = new AnnotationConfigApplicationContext();
+        ApplicationContext ac = new AnnotationConfigApplicationContext(SpringConfiguration.class);
 
         AccountServiceImpl1 as = ac.getBean("accountService1", AccountServiceImpl1.class);
 

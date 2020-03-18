@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="accountService" class="clm.aop.yuanli.AccountService"></bean>
+
+    <bean id="connectionUtil" class="clm.aop.yuanli.ConnectionUtil">
+<!--        <property name="dataSource" ref="dataSource"></property>-->
+    </bean>
+
+    <bean id="dataSource" class="javax.sql.DataSource" abstract="true">
+
+
+    </bean>
+
+    <bean id="transactionManager" class="clm.aop.yuanli.TransactionManager">
+        <property name="connectionUtil" ref="connectionUtil"></property>
+    </bean>
+
+    <bean id="proxyServiceFactory" class="clm.aop.yuanli.ProxyAccountService">
+        <property name="service" ref="accountService"></property>
+<!--        <property name="transactionManager" ref="transactionManager"></property>-->
+    </bean>
+
+    <bean id="proxyService" factory-bean="proxyServiceFactory" factory-method="getService"></bean>
+</beans>

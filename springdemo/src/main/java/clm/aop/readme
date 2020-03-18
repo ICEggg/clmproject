@@ -1,0 +1,6 @@
+service层的增删改查操作，如果需要加入事务，在没有aop和动态代理的情况下，
+需要给每个方法都加上事务的代码。（自定义的ConnectionUtil，TransactionManager）
+
+aop的原理是基于动态代理，引出动态代理
+
+
