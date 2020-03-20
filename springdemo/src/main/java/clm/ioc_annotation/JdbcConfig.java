@@ -1,7 +1,6 @@
 package clm.ioc_annotation;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Configuration;
 
 /**
  * 假如有一个jdbc的配置类

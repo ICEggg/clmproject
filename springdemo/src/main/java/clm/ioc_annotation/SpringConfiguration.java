@@ -4,6 +4,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * 配置类，和bean.xml是一样的
@@ -29,5 +30,6 @@ import org.springframework.context.annotation.PropertySource;
 @ComponentScan(basePackages = "clm.ioc_annotation")
 @Import(JdbcConfig.class)
 @PropertySource(value = "classpath:jdbcConfig.properties")
+@EnableTransactionManagement    //开启注解事务
 public class SpringConfiguration {
 }
