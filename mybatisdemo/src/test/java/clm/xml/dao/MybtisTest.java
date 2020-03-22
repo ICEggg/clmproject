@@ -1,5 +1,6 @@
 package clm.xml.dao;
 
+import clm.xml.domain.Account;
 import clm.xml.domain.QueryVo;
 import clm.xml.domain.User;
 import org.apache.ibatis.io.Resources;
@@ -12,6 +13,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class MybtisTest {
     private InputStream in;
     private SqlSession session;
     private IUserDao userDao;
+    private IAccountDao accountDao;
 
     @Before
     public void init() throws IOException {
@@ -32,6 +35,7 @@ public class MybtisTest {
         session = factory.openSession();
         //4、使用SqlSession创建Dao接口的代理对象
         userDao = session.getMapper(IUserDao.class);
+        accountDao = session.getMapper(IAccountDao.class);
     }
 
     @After
@@ -110,5 +114,47 @@ public class MybtisTest {
         }
     }
 
+
+    @Test
+    public void findUserByCondition(){
+        User u = new User();
+        u.setUsername("老王");
+        u.setSex("女");
+        List<User> users = userDao.findUserByCondition(u);
+        for (User user : users){
+            System.out.println(user);
+        }
+    }
+
+    /**
+     * 根据in条件查询
+     * foreach标签的使用
+     */
+    @Test
+    public void findUserInIds(){
+        QueryVo vo = new QueryVo();
+        List<Integer> list = new ArrayList<Integer>();
+        list.add(41);
+        list.add(42);
+        list.add(43);
+        vo.setIds(list);
+
+        List<User> users = userDao.findUserInIds(vo);
+        for (User user :users){
+            System.out.println(user);
+        }
+    }
+
+    /**
+     * 获取所有账户
+     */
+    @Test
+    public void findAllAccount(){
+        List<Account> list = accountDao.findAllAccount();
+        for (Account account :list){
+            System.out.println(account);
+            System.out.println(account.getUser());
+        }
+    }
 
 }

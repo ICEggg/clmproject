@@ -21,4 +21,10 @@ public interface IUserDao {
     //根据queryVo中的条件查询用户
     List<User> findUserByVo(QueryVo vo);
 
+    //根据传入的条件查询,有可能有用户名，或者性别，或者地址，或者都有
+    List<User> findUserByCondition(User user);
+
+    //根据in条件查询
+    List<User> findUserInIds(QueryVo vo);
+
 }
