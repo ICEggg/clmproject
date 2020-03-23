@@ -27,4 +27,14 @@ public interface IUserDao {
     //根据in条件查询
     List<User> findUserInIds(QueryVo vo);
 
+    //查找所有用户和对应的账户
+    List<User> findAllUserAndAccount();
+
+    //用户和角色的关系
+    List<User> findAllUserAndRole();
+
+
+    //查找所有用户   懒加载
+    List<User> findAllUserLazy();
+
 }

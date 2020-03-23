@@ -5,6 +5,9 @@
 
 <!--配置文件的目录，必须和对应的IUserDao，的目录结构相同-->
 <mapper namespace="clm.xml.dao.IUserDao">
+    <!--开启user支持二级缓存，然后在下面的select等标签加上useCache=true-->
+    <cache/>
+
     <!--  查询结果的列名和实体类的属性名的对应关系  -->
     <resultMap id="userMap" type="clm.xml.domain.User">
         <id property="id" column="id"></id>
@@ -13,6 +16,50 @@
         <result property="sex" column="sex"></result>
         <result property="birthday" column="birthday"></result>
     </resultMap>
+
+    <resultMap id="userAccountMap" type="user">
+        <id property="id" column="id"></id>
+        <result property="username" column="username"></result>
+        <result property="address" column="address"></result>
+        <result property="sex" column="sex"></result>
+        <result property="birthday" column="birthday"></result>
+        <!--  ofType:集合中元素的类型  -->
+        <collection property="accounts" ofType="account">
+            <id column="aid" property="id"></id>
+            <result column="uid" property="uid"></result>
+            <result column="money" property="money"></result>
+        </collection>
+    </resultMap>
+
+    <resultMap id="userRoleMap" type="user">
+        <id property="id" column="id"></id>
+        <result property="username" column="username"></result>
+        <result property="address" column="address"></result>
+        <result property="sex" column="sex"></result>
+        <result property="birthday" column="birthday"></result>
+        <!--  ofType:集合中元素的类型  -->
+        <collection property="roles" ofType="role">
+            <id column="id" property="id"></id>
+            <result column="role_name" property="role_name"></result>
+            <result column="role_desc" property="role_desc"></result>
+        </collection>
+    </resultMap>
+
+    <!--懒加载配置-->
+    <resultMap id="userAccountMapLazy" type="user">
+        <id property="id" column="id"></id>
+        <result property="username" column="username"></result>
+        <result property="address" column="address"></result>
+        <result property="sex" column="sex"></result>
+        <result property="birthday" column="birthday"></result>
+        <!--  ofType:集合中元素的类型  -->
+        <collection property="accounts" ofType="account" select="clm.xml.dao.IAccountDao.findAccountByUserId" column="id">
+        </collection>
+    </resultMap>
+
+
+
+
 
     <!--<resultMap id="queryvo" type="clm.xml.domain.QueryVo">
         <result property="user" />
@@ -30,7 +77,7 @@
         <include refid="defaultUser"></include>
     </select>
 
-    <select id="findUserById" parameterType="int" resultType="user">
+    <select id="findUserById" parameterType="int" resultType="user" useCache="true">
         select * from user where id=#{id}
     </select>
 
@@ -94,6 +141,19 @@
                 </foreach>
             </if>
         </where>
+    </select>
+
+    <select id="findAllUserAndAccount" resultMap="userAccountMap">
+        select * from user a left join account b on a.id = b.uid
+    </select>
+    
+    <select id="findAllUserAndRole" resultMap="userRoleMap">
+        select u.*,r.id rid,r.role_name,r.role_desc from role r right join user_role ur on r.id = ur.rid
+         right join user u on ur.uid = u.id
+    </select>
+
+    <select id="findAllUserLazy" resultMap="userAccountMapLazy">
+        select * from user
     </select>
 
 </mapper>

@@ -18,4 +18,16 @@ public interface IAccountDao {
      * @return
      */
     List<User> findAllAccountUsernameAddress();
+
+    /**
+     * 查询所有账户，延迟加载
+     * @return
+     */
+    List<Account> findAllAccountLazy();
+
+    /**
+     * 根据用户id查账户
+     * @return
+     */
+    List<Account> findAccountByUserId();
 }

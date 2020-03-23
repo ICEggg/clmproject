@@ -26,6 +26,19 @@
         <property name="password" value="root"/>
     </properties>-->
 
+    <settings>
+        <!--控制台打印sql语句-->
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+
+        <!--打开延迟加载的开关-->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+
+        <!--开启缓存，其实默认值就是true，开不开无所谓-->
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
+
+
     <!--  使用typeAlias配置别名， 只能配置domain中的类的别名 -->
     <typeAliases>
 <!--        <typeAlias type="clm.xml.domain.User" alias="user"></typeAlias>-->

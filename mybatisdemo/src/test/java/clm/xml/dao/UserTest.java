@@ -2,6 +2,7 @@ package clm.xml.dao;
 
 import clm.xml.domain.Account;
 import clm.xml.domain.QueryVo;
+import clm.xml.domain.Role;
 import clm.xml.domain.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -17,12 +18,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MybtisTest {
+public class UserTest {
 
     private InputStream in;
     private SqlSession session;
     private IUserDao userDao;
-    private IAccountDao accountDao;
 
     @Before
     public void init() throws IOException {
@@ -35,7 +35,6 @@ public class MybtisTest {
         session = factory.openSession();
         //4、使用SqlSession创建Dao接口的代理对象
         userDao = session.getMapper(IUserDao.class);
-        accountDao = session.getMapper(IAccountDao.class);
     }
 
     @After
@@ -145,16 +144,40 @@ public class MybtisTest {
         }
     }
 
-    /**
-     * 获取所有账户
-     */
+
+
+    //获取所有用户和对应账户的信息
     @Test
-    public void findAllAccount(){
-        List<Account> list = accountDao.findAllAccount();
-        for (Account account :list){
-            System.out.println(account);
-            System.out.println(account.getUser());
+    public void findAllUserAndAccount(){
+        List<User> list = userDao.findAllUserAndAccount();
+        for (User user :list){
+            System.out.println(user);
+            System.out.println(user.getAccounts());
         }
     }
+
+    //获取用户和角色对应关系
+    @Test
+    public void findAllUserAndRole(){
+        List<User> list = userDao.findAllUserAndRole();
+        for (User user :list){
+            System.out.println(user);
+            System.out.println(user.getRoles());
+            System.out.println("---------------------------");
+        }
+    }
+
+    //查询用户 一对多 账户      懒加载账户信息
+    @Test
+    public void findAllUserLazy(){
+        List<User> list = userDao.findAllUserLazy();
+        /*for (User user :list){
+            System.out.println(user);
+            System.out.println(user.getRoles());
+            System.out.println("---------------------------");
+        }*/
+    }
+
+
 
 }
