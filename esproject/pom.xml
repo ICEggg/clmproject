@@ -20,10 +20,6 @@
             </plugin>
         </plugins>
     </build>
-    <modules>
-        <module>sparkproject</module>
-        <module>../../../ideaproject</module>
-    </modules>
 
     <dependencies>
         <dependency>
