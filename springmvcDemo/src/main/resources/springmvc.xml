@@ -20,7 +20,52 @@
         <property name="suffix" value=".jsp"></property>
     </bean>
 
+    <!--配置自定义类型转换器-->
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="clm.utils.StringToDateConverter"></bean>
+            </set>
+        </property>
+    </bean>
+
+    <!-- 前端控制器，哪些静态资源不拦截-->
+    <mvc:resources mapping="/css/**" location="/css/"></mvc:resources>
+    <mvc:resources mapping="/images/**" location="/images/"></mvc:resources>
+    <mvc:resources mapping="/js/**" location="/js/"></mvc:resources>
+
+    <!-- 文档上传，配置文件解析器对象   -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="10485760"></property>
+    </bean>
+
+    <!--配置异常处理器-->
+    <bean id="sysExceptionResolver" class="clm.exception.SysExceptionResolver"></bean>
+
+    <!--配置拦截器-->
+    <mvc:interceptors>
+        <!--配置第一个拦截器-->
+        <mvc:interceptor>
+            <!--要拦截的方法-->
+            <mvc:mapping path="/user/*"/>
+            <!--不拦截的方法-->
+            <!--<mvc:exclude-mapping path=""/>-->
+
+            <!--配置拦截器对象-->
+            <bean class="clm.interceptor.MyInterceptor1"></bean>
+        </mvc:interceptor>
+
+        <!--配置第二个拦截器-->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <!--<mvc:exclude-mapping path=""/>-->
+            <bean class="clm.interceptor.MyInterceptor2"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <!--开启springmvc框架注解的支持-->
-    <mvc:annotation-driven></mvc:annotation-driven>
+    <mvc:annotation-driven conversion-service="conversionService">
+
+    </mvc:annotation-driven>
 
 </beans>
