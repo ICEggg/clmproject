@@ -28,7 +28,7 @@ public class KuduCollectlExample {
     private static final String ID_TABLE_NAME = "metric_ids";
 
     private static final String KUDU_MASTER =
-            System.getProperty("kuduMasters", "localhost:7051");
+            System.getProperty("kuduMasters", "hdp004.beyondsoft.com:7051");
 
     private KuduClient client;
     private KuduTable table;

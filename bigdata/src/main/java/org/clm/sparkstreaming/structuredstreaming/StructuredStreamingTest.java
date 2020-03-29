@@ -58,7 +58,7 @@ public class StructuredStreamingTest {
 
 		try {
 			query.awaitTermination();
-		} catch (StreamingQueryException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -96,7 +96,7 @@ public class StructuredStreamingTest {
 
 		try {
 			ds.awaitTermination();
-		} catch (StreamingQueryException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -121,7 +121,7 @@ public class StructuredStreamingTest {
 			.start();
 		try {
 			query.awaitTermination();
-		} catch (StreamingQueryException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

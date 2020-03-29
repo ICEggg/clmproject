@@ -1,8 +1,6 @@
 import java.util.List;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.kudu.ColumnSchema;
 import org.apache.kudu.Schema;
 import org.apache.kudu.Type;
@@ -23,7 +21,7 @@ import org.apache.kudu.client.RowResultIterator;
 public class KuduExample {
 
     private static final Double DEFAULT_DOUBLE = 12.345;
-    private static final String KUDU_MASTERS = System.getProperty("kuduMasters", "localhost:7051");
+    private static final String KUDU_MASTERS = System.getProperty("kuduMasters", "hdp004.beyondsoft.com:7051");
 
     static void createExampleTable(KuduClient client, String tableName)  throws KuduException {
         // Set up a simple schema.
@@ -99,7 +97,7 @@ public class KuduExample {
         List<String> projectColumns = new ArrayList<String>(2);
         projectColumns.add("key");
         projectColumns.add("value");
-        projectColumns.add("added");
+       // projectColumns.add("added");
         int lowerBound = 0;
         KuduPredicate lowerPred = KuduPredicate.newComparisonPredicate(
                 schema.getColumn("key"),
@@ -128,11 +126,11 @@ public class KuduExample {
                 if (result.isNull("value")) {
                     nullCount++;
                 }
-                double added = result.getDouble("added");
-                if (added != DEFAULT_DOUBLE) {
+                //double added = result.getDouble("added");
+                /*if (added != DEFAULT_DOUBLE) {
                     throw new RuntimeException("expected added=" + DEFAULT_DOUBLE +
                             " but got added= " + added);
-                }
+                }*/
                 resultCount++;
             }
         }
@@ -165,17 +163,17 @@ public class KuduExample {
 
             // Alter the table, adding a column with a default value.
             // Note: after altering the table, the table needs to be re-opened.
-            AlterTableOptions ato = new AlterTableOptions();
+            /*AlterTableOptions ato = new AlterTableOptions();
             ato.addColumn("added", org.apache.kudu.Type.DOUBLE, DEFAULT_DOUBLE);
             client.alterTable(tableName, ato);
-            System.out.println("Altered the table");
+            System.out.println("Altered the table");*/
 
             scanTableAndCheckResults(client, tableName, numRows);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             try {
-                client.deleteTable(tableName);
+                //client.deleteTable(tableName);
                 System.out.println("Deleted the table");
             } catch (Exception e) {
                 e.printStackTrace();
