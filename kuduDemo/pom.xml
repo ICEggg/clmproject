@@ -67,12 +67,11 @@
             <artifactId>slf4j-simple</artifactId>
             <version>1.7.25</version>
         </dependency>
-        <!--<dependency>
+        <dependency>
             <groupId>org.apache.kudu</groupId>
             <artifactId>kudu-spark2_2.11</artifactId>
             <version>${kudu-version}</version>
-            <scope>test</scope>
-        </dependency>-->
+        </dependency>
 
 
         <!-- https://mvnrepository.com/artifact/org.apache.spark/spark-core -->

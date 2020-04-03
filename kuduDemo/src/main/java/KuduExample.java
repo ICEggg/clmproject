@@ -18,6 +18,9 @@ import org.apache.kudu.client.PartialRow;
 import org.apache.kudu.client.RowResult;
 import org.apache.kudu.client.RowResultIterator;
 
+/**
+ * java api
+ */
 public class KuduExample {
 
     private static final Double DEFAULT_DOUBLE = 12.345;

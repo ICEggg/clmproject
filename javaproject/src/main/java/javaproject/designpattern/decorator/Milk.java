@@ -7,10 +7,9 @@ package javaproject.designpattern.decorator;
 public class Milk extends Decorator {
     public String description="牛奶";
     double mycost = 10; //牛奶调味品10块
-    public Beverage beverage;
 
     public Milk(Beverage beverage) {
-        this.beverage = beverage;
+        super(beverage);
     }
 
     @Override

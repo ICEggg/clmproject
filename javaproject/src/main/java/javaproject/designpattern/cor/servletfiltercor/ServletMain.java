@@ -21,6 +21,7 @@ public class ServletMain {
         fc2.add(new Filter2());
 
         fc.add(fc2);
+
         fc.doFilter(request,response,fc);
         System.out.println(request.str+"..."+response.str);
 

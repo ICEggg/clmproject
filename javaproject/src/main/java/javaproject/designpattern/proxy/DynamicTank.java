@@ -32,7 +32,7 @@ public class DynamicTank implements DynamicMoveable{
     public static void main(String[] args) {
         DynamicTank tank = new DynamicTank();
 
-        //proxy默认会动态生成代理类，可是这句代码没有反应啊。。。。。。。
+        //proxy默认会在项目的一个目录中动态生成代理类的代码，可是这句代码没有反应啊。。。。。。。
         System.getProperties().put("jdk.proxy.ProxyGenerator.saveGeneratedFiles","true");
 
         //reflection 反射 通过二进制字节码分析类的属性和方法

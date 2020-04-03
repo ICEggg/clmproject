@@ -21,11 +21,5 @@ public class Main {
         Beverage decorator2 = new Whip(decorator);
         System.out.println(decorator2.getDescription()+"    $"+decorator2.getPrice());*/
 
-        /*Beverage beverage2 = new HouseBlend();
-        Decorator decorator = new Milk(beverage2);
-        Decorator decorator2 = new Whip(decorator);
-        System.out.println(decorator2.getDescription()+"    $"+decorator2.getPrice());*/
-
-
     }
 }

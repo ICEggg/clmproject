@@ -4,9 +4,7 @@ package javaproject.designpattern.proxy;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
-
 import java.lang.reflect.Method;
-import java.util.Random;
 
 /**
  * cglib实现动态代理，比jdk的实现更好，因为被代理对象不需要实现一个接口，就可以实现动态代理
@@ -14,7 +12,7 @@ import java.util.Random;
  * 缺点是：如果被代理对象是final修饰的，比如final Tank，那cglib这个方式就不行了
  * cglib的底层也是asm
  */
-public class CglibTank {
+class CglibTank {
     public static void main(String[] args) {
         //增强
         Enhancer enhancer = new Enhancer();
@@ -38,13 +36,3 @@ class TimeMethodIntereptor implements MethodInterceptor {
     }
 }
 
-class Tank{
-    public void move() {
-        System.out.println("tank moving claclacla.......");
-        try {
-            Thread.sleep(new Random().nextInt(1000));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-}

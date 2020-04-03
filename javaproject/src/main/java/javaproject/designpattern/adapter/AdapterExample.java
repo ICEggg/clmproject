@@ -65,6 +65,10 @@ public class AdapterExample {
         }
     }
 
+    /**
+     * 其中 support() 方法用于检查输入的电压是否与适配器匹配，
+     * outputDC5V() 方法则用于将输入的电压变换为 5V 后输出
+     */
     static interface DC5Adapter {
         boolean support(AC ac);
 
