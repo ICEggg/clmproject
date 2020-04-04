@@ -6,7 +6,7 @@
 1.Abstract Factory      1.Adapter               1.Chain of Reponsibility
 2.Builder               2.Bridge                2.Interpreter
 3.Factory Method        3.Composite             3.Iterator
-4.Prototyper            4.Decorator             4.Mediator
+4.Prototyper            4.Decorator             4.Mediator（中介者模式）
 5.Singleton             5.Facade                5.Memento
                         6.Flyweight             6.Observer
                         7.Proxy                 7.Observer

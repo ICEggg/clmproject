@@ -1,4 +1,4 @@
-package javaproject.designpattern.bridge;
+package javaproject.designpattern.bridge.giftexample;
 
 
 /**

@@ -1,6 +1,7 @@
 public class User {
     private String name;
     private Integer id;
+    public  static String asd;
 
     public User(String name, Integer id) {
         this.name = name;
