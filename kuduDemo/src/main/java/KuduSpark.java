@@ -156,5 +156,54 @@ public class KuduSpark {
 
     }
 
+    /**
+     * 使用sftmta prep DataFrame定义的模式
+     * 创建一个包含3个副本和4个散列分区的Kudu表。
+     */
+    public void createTable(){
+        SparkConf conf = new SparkConf().setMaster("local").setAppName("test");
+        JavaSparkContext jsc = new JavaSparkContext(conf);
+        SparkSession sparkSession = SparkSession.builder().appName("SparkSQL_demo").master("local").getOrCreate();
+        SparkContext sparkContext = sparkSession.sparkContext();
+
+        KuduContext kuduContext = new KuduContext(kuduMasters,sparkContext);
+
+
+        // Delete the table if it already exists.
+        if(kuduContext.tableExists("sfmta_kudu")) {
+            kuduContext.deleteTable("sfmta_kudu");
+        }
+
+        kuduContext.createTable("sfmta_kudu", sftmta_prep.schema,
+                /* primary key */ Seq("REPORT_TIME", "VEHICLE_TAG"),
+                new CreateTableOptions()
+                        .setNumReplicas(3)
+                        .addHashPartitions(Arrays.asList("VEHICLE_TAG"), 4));
+
+
+    }
+
+    public void loadKuduData(){
+        SparkConf conf = new SparkConf().setMaster("local").setAppName("test");
+        JavaSparkContext jsc = new JavaSparkContext(conf);
+        SparkSession sparkSession = SparkSession.builder().appName("SparkSQL_demo").master("local").getOrCreate();
+        SparkContext sparkContext = sparkSession.sparkContext();
+
+        KuduContext kuduContext = new KuduContext(kuduMasters,sparkContext);
+
+        kuduContext.insertRows(sftmta_prep, "sfmta_kudu")
+// Create a DataFrame that points to the Kudu table we want to query.
+        val sfmta_kudu = spark.read
+                .option("kudu.master", "localhost:7051,localhost:7151,localhost:7251")
+                .option("kudu.table", "sfmta_kudu")
+                // We need to use leader_only because Kudu on Docker currently doesn't
+                // support Snapshot scans due to `--use_hybrid_clock=false`.
+                .option("kudu.scanLocality", "leader_only")
+                .format("kudu").load
+        sfmta_kudu.createOrReplaceTempView("sfmta_kudu")
+        spark.sql("SELECT count(*) FROM sfmta_kudu").show()
+        spark.sql("SELECT * FROM sfmta_kudu LIMIT 5").show()
+    }
+
 
 }

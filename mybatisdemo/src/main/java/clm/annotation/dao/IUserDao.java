@@ -20,7 +20,7 @@ public interface IUserDao {
             @Result(column = "address",property = "address"),
             @Result(column = "sex",property = "sex"),
             @Result(column = "birthday",property = "birthday"),
-            @Result(column = "id",property = "accounts",many = @Many(select = "clm.annotation.dao.IAccountDao.findAccountByUid",fetchType = FetchType.LAZY))
+            @Result(column = "id",property = "accounts",many = @Many(select = "clm.annotation.clm.dao.IAccountDao.findAccountByUid",fetchType = FetchType.LAZY))
     })
     List<User> findAllUser();
 

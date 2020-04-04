@@ -12,7 +12,7 @@
        http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--扫描注解-->
-    <context:component-scan base-package="clm.controller"></context:component-scan>
+    <context:component-scan base-package="clm.clm.controller"></context:component-scan>
 
     <!--视图解析器:后台controller返回一个string，跳页面的时候，这个解析器帮你跳-->
     <bean id="internalResourceViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -64,7 +64,7 @@
     </mvc:interceptors>
 
     <!--开启springmvc框架注解的支持-->
-    <mvc:annotation-driven conversion-service="conversionService">
+    <mvc:annotation-driven conversion-clm.service="conversionService">
 
     </mvc:annotation-driven>
 

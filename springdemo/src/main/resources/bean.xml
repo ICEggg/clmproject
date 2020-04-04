@@ -16,8 +16,8 @@
         采用的就是默认构造函数创建bean对象
         如果此类中没有默认无参构造函数，则对象无法创建
     -->
-<!--    <bean id="accountService" class="clm.ioc.service.AccountServiceImpl11"></bean>-->
-    <bean id="accountDao" class="clm.ioc.dao.AccountDaoImpl"></bean>
+<!--    <bean id="accountService" class="clm.ioc.clm.service.AccountServiceImpl11"></bean>-->
+    <bean id="accountDao" class="clm.ioc.clm.dao.AccountDaoImpl"></bean>
 
     <!--第二种方式：使用普通工厂中的方法创建对象（使用某个类中的方法创建对象，并存入spring容器）-->
 <!--    <bean id="instanceFactory" class="clm.ioc.factory.InstanceFactory"></bean>-->
@@ -36,7 +36,7 @@
             session     web应用的会话范围
             global-session  集群环境的会话范围（全局会话范围），当不是集群环境时，这个就是session
     -->
-<!--    <bean id="accountService" class="clm.ioc.service.AccountServiceImpl11" scope="singleton"></bean>-->
+<!--    <bean id="accountService" class="clm.ioc.clm.service.AccountServiceImpl11" scope="singleton"></bean>-->
 
     <!--3、bean对象的生命周期
             单例对象
@@ -53,7 +53,7 @@
                 或者：对象只要在使用，就一直活着
                 死亡：当对象长时间不用了，且没有别的对象引用，由java的垃圾回收器回收
     -->
-    <!--<bean id="accountService" class="clm.ioc.service.AccountServiceImpl11" scope="singleton"
+    <!--<bean id="accountService" class="clm.ioc.clm.service.AccountServiceImpl11" scope="singleton"
     init-method="init" destroy-method="destory"></bean>-->
 
 
@@ -99,7 +99,7 @@
          少用
 
     -->
-    <bean id="accountService1" class="clm.ioc.service.AccountServiceImpl1">
+    <bean id="accountService1" class="clm.ioc.clm.service.AccountServiceImpl1">
 <!--        <constructor-arg type="java.lang.String" value="test"></constructor-arg>-->
         <!--<constructor-arg index="0" value="test"></constructor-arg>-->
         <constructor-arg name="name" value="test"></constructor-arg>
@@ -128,7 +128,7 @@
             （对象初始化先调用默认构造函数，然后由spring容器调用set方法赋值，单线程不会有问题，多线程下set方法可以被打断，其他线程得到的对象便是不完整的）
 
     -->
-    <bean id="accountService2" class="clm.ioc.service.AccountServiceImpl2">
+    <bean id="accountService2" class="clm.ioc.clm.service.AccountServiceImpl2">
         <property name="name" value="aaa"></property>
         <property name="age" value="18"></property>
         <property name="birthday" ref="now2"></property>
@@ -143,7 +143,7 @@
             map，props （这两类标签可以互换）
         结构相同，标签可以互换
      -->
-    <bean id="accountService3" class="clm.ioc.service.AccountServiceImpl3">
+    <bean id="accountService3" class="clm.ioc.clm.service.AccountServiceImpl3">
         <property name="myStr">
             <array>
                 <value>aaa</value>

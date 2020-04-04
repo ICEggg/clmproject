@@ -23,7 +23,7 @@
 
     <!--配置别名-->
     <typeAliases>
-        <package name="clm.annotation.domain"/>
+        <package name="clm.annotation.clm.domain"/>
     </typeAliases>
 
     <!--配置环境-->
@@ -47,7 +47,7 @@
         如果是用注解，要使用class属性指定备注接的dao全限定类名
     -->
     <mappers>
-        <package name="clm.annotation.dao"/>
+        <package name="clm.annotation.clm.dao"/>
     </mappers>
 
 </configuration>

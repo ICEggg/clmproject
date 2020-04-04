@@ -21,7 +21,7 @@ import java.util.Map;
 @Api(value = "UserController操作api")
 public class UserController extends BaseController {
     //@Autowired
-   // private UserService service;
+   // private UserService clm.service;
     @Autowired
     private JwtUtil jwtUtil;
 
@@ -64,7 +64,7 @@ public class UserController extends BaseController {
 
         //Claims claims = jwtUtil.parseJwt(token);
         String id = this.claims.getId();
-//        SysUser user = service.findbyid(id);
+//        SysUser user = clm.service.findbyid(id);
 //        List<SysUser> list = new ArrayList<>();
 //        list.add(user);
 
@@ -92,11 +92,11 @@ public class UserController extends BaseController {
 //        BaseResponse<SysUser> response = new BaseResponse<SysUser>();
 //        Claims claims = jwtUtil.parseJwt(token);
 //        String id = claims.getId();
-//        SysUser user = service.findbyid(id);
+//        SysUser user = clm.service.findbyid(id);
 //        List<SysUser> list = new ArrayList<>();
 //        list.add(user);
 //
-//        Cookie cookie = service.cookie_token(token);
+//        Cookie cookie = clm.service.cookie_token(token);
 //        httpServletResponse.addCookie(cookie);
 //
 //        response.setResultCode(ResultCode.RESULT_SUCCESS);

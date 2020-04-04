@@ -9,6 +9,6 @@
 
 >
     <context:component-scan base-package="clm.ioc_annotation"></context:component-scan>
-<!--    <bean id="accountService1" class="clm.ioc_annotation.service.service.AccountServiceImpl1"></bean>-->
+<!--    <bean id="accountService1" class="clm.ioc_annotation.clm.service.clm.service.AccountServiceImpl1"></bean>-->
 
 </beans>

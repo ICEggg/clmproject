@@ -1,6 +1,6 @@
 package impl;
 
-import service.IMessageService;
+import clm.service.IMessageService;
 
 public class MessageService implements IMessageService {
     public void getMessage() {

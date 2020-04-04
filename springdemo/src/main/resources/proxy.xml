@@ -19,7 +19,7 @@
     </bean>
 
     <bean id="proxyServiceFactory" class="clm.aop.yuanli.ProxyAccountService">
-        <property name="service" ref="accountService"></property>
+        <property name="clm.service" ref="accountService"></property>
 <!--        <property name="transactionManager" ref="transactionManager"></property>-->
     </bean>
 

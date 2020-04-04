@@ -1,4 +1,4 @@
-package service;
+package clm.service;
 
 public interface IMessageService {
     void getMessage();

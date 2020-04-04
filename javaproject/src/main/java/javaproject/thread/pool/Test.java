@@ -26,9 +26,9 @@ public class Test {
         service.shutdown();
         System.out.println(list.size());
 
-        /*service.shutdown();
+        /*clm.service.shutdown();
         while (true) {//等待所有任务都执行结束
-            if (service.isTerminated()) {//所有的子线程都结束了
+            if (clm.service.isTerminated()) {//所有的子线程都结束了
                 System.out.println(list.size());
                 break;
             }

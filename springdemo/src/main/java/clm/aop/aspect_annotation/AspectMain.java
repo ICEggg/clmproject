@@ -8,6 +8,6 @@ public class AspectMain {
         ApplicationContext ac = new ClassPathXmlApplicationContext("aop_annotation.xml");
         AccountService service = ac.getBean("accountService", AccountService.class);
         service.add();
-        //service.delete();
+        //clm.service.delete();
     }
 }
