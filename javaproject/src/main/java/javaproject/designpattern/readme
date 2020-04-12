@@ -40,7 +40,7 @@ spingioc：依赖注入，控制反转。（有空了看一下！）
 4.外观模式Facade（消息中间件，kafka）
     比如一个人买基金，基金经理去买股票。这就相当于外观模式。具体看代码
 
-5.装饰者模式Decorator
+5.装饰者模式Decorator        (java.io.FileInputStream用到了）
     可以对类的属性进行扩展。比如一杯奶茶，可以加椰果，加糖，加珍珠等等，可以无限往后加。具体看代码
 
 6.责任链ChainOfResponsibility（Servlet的过滤器）
@@ -90,7 +90,7 @@ spingioc：依赖注入，控制反转。（有空了看一下！）
     所以就需要一个转换器把字节流的，转换成一行一行的，
     InputStreamReader就相当于是转换器
 
-15.桥接模式bridge
+15.桥接模式bridge   （jdbc 的 Driver接口）
     比如有Gift，有WarmGift和ColdGift等等。。，这两个下面可能还有子类，子类下还有子类。。
 
     桥接模式：分离抽象于具体实现，让他们可以独自发展

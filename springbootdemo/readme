@@ -17,3 +17,15 @@
 
 9.springboot 定时任务，com.mashibing.demo.listener.ScheduleTask，这是普通定时器，可以用@EnableAsync开启多线程
                        com.mashibing.demo.listener.ScheduleTaskByInterface，这是可以动态修改定时时间的定时器，还不能用，还没调好
+
+10、过滤器 -> 通过集成Filter实现. 缺点如下
+   1.1 无法获取请求要访问的类与方法,以及参数. 可以获取原始的http请求与相应
+   拦截器 -> 基于springmvc提供的拦截器接口,自定义实现.缺点如下
+   2.1 可以获取请求访问的类与方法 , 但是无法获取请求参数的值. 具体可根据dispatcherServlet跟踪源码
+   切面 -> 基于spring , 通过aspect注解实现
+   3.1 可以获取访问的类 方法 以及参数值. 但是无法获取http原始的请求与相应的对象
+   执行顺序
+   .1 请求处理顺序
+   5.1.1 过滤器 -> 拦截器 -> 切面
+   5.2 报错处理顺序
+   5.2.1 切面 -> controllerAdvice -> 拦截器 -> 过滤器 -> 服务

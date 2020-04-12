@@ -1,5 +1,7 @@
 package javaproject.designpattern.visitor;
 
+import java.sql.Driver;
+
 /**
  * 访问者模式，比如电脑配件，有cpu，内存，等。
  * 对不同的用户有不同的打折方式，比如学生，cpu打1折，内存打2折,主板打三折，对白领等其他职业打不同的折扣
