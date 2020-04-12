@@ -19,10 +19,21 @@ import scala.collection.Seq;
 import java.util.*;
 import java.util.function.Consumer;
 
-
+/**
+ * sparkshell读取kudu：
+ * 1、spark2-shell --jars kudu-spark2_2.11-1.7.0.jar
+ * 2、import org.apache.kudu.spark.kudu._
+ *      import org.apache.kudu.client._
+ *      import collection.JavaConverters._
+ * 3、 val df = spark.read.options(Map("kudu.master" -> "hdp004.beyondsoft.com:7051","kudu.table" -> "user")).kudu
+ * 4、df.show
+ *
+ *
+ *
+ *
+ */
 public class KuduSpark {
     private static String KUDU_MASTERS;
-    private static String tableName;
     private static int tableNumReplicas = Integer.getInteger("tableNumReplicas", 1);
 
     private static String nameCol = "name";
@@ -43,15 +54,24 @@ public class KuduSpark {
         kuduContext = new KuduContext(KUDU_MASTERS, sparkSession.sparkContext());
     }
 
+    /**
+     *  建表必须大于两个hash分区
+     * @param args
+     */
     public static void main(String[] args) {
-        /*String hdfsPath = "D:\\aaa.txt";
-        String tableName = "user";
+        String hdfsPath = "D:\\aaa.txt";
+        String tableName = "user3";
         KuduSpark ks = new KuduSpark();
-        *//*StructType schema = ks.createTableSchema();
-        ks.createTable(tableName,schema);
-        ks.loadData(hdfsPath,schema,tableName);*//*
 
-        ks.readKuduData(tableName);*/
+        StructType schema = ks.createTableSchema();
+        ks.createTable(tableName,schema);
+        ks.loadData(hdfsPath,schema,tableName);
+
+        ks.readKuduData(tableName);
+
+
+        //ks.delTable(tableName);
+
     }
 
     /**
@@ -66,6 +86,8 @@ public class KuduSpark {
         fields.add(idField);
         StructField nameField = DataTypes.createStructField("name", DataTypes.StringType, false);
         fields.add(nameField);
+        StructField ageField = DataTypes.createStructField("age", DataTypes.IntegerType, false);
+        fields.add(ageField);
 
         StructType schema = DataTypes.createStructType(fields);
         return schema;
@@ -80,19 +102,22 @@ public class KuduSpark {
         }
 
         kuduContext.createTable(tableName, schema,
-                JavaConverters.asScalaIteratorConverter(Arrays.asList("id", "name").iterator()).asScala().toSeq(),
+                JavaConverters.asScalaIteratorConverter(Arrays.asList("id","name","age").iterator()).asScala().toSeq(),
                 new CreateTableOptions()
-                        .setNumReplicas(3)
-                        .addHashPartitions(Arrays.asList("id"), 2));
+                        .setNumReplicas(1)
+                        .addHashPartitions(Arrays.asList("id","name"), 2));
         System.out.println("表："+tableName+" 创建成功");
     }
 
+
+    //加载数据
     public void loadData(String hdfsPath,StructType schema,String tableName){
         JavaRDD<User> javaRdd = sparkSession.sparkContext().textFile(hdfsPath,1).toJavaRDD()
                 .map((line)->{
                     String name = line.split(",")[0];
                     Integer id = Integer.parseInt( line.split(",")[1]);
-                    User user1 = new User(name,id);
+                    Integer age = Integer.parseInt( line.split(",")[2]);
+                    User user1 = new User(name,id,age);
                     return user1;
                 });
 
@@ -112,6 +137,11 @@ public class KuduSpark {
                 .format("kudu").load();*/
     }
 
+    //删除表
+    public void delTable(String tableName){
+        kuduContext.deleteTable(tableName);
+    }
+
     public void readKuduData(String tableName){
         List<String> colList = new ArrayList<>();
         colList.add(nameCol);
@@ -127,6 +157,7 @@ public class KuduSpark {
 
 
     public void way(){
+        String tableName="";
         //表的列
         List<String> fieldNameList = new ArrayList<>();
         fieldNameList.add("a");
@@ -184,7 +215,8 @@ public class KuduSpark {
             userStructField.add(nameField);
             StructType userSchema = DataTypes.createStructType(userStructField);
 
-            JavaRDD<User> userJavaRDD = jsc.parallelize(Arrays.asList(new User("userA", 1234),new User("userB", 5678)));
+            JavaRDD<User> userJavaRDD = jsc.parallelize(
+                    Arrays.asList(new User("userA", 1234,12),new User("userB", 5678,2)));
             Dataset<Row> userDF = sparkSession.createDataFrame((List<Row>) userJavaRDD,userSchema);
 
             kuduContext.insertRows(userDF, tableName);
@@ -216,7 +248,8 @@ public class KuduSpark {
 
             // Upsert some rows.
             System.out.println("upserting to table '$tableName'");
-            JavaRDD<User> upsertUsersRDD = jsc.parallelize(Arrays.asList(new User("newUserA", 1234),new User("userC", 7777)));
+            JavaRDD<User> upsertUsersRDD = jsc.parallelize(
+                    Arrays.asList(new User("newUserA", 1234,1),new User("userC", 7777,2)));
 
             Dataset<Row> upsertUsersDF = sparkSession.createDataFrame((List<Row>) upsertUsersRDD,userSchema);
             kuduContext.upsertRows(upsertUsersDF, tableName);

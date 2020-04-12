@@ -1,11 +1,12 @@
 public class User {
     private String name;
     private Integer id;
-    public  static String asd;
+    private int age;
 
-    public User(String name, Integer id) {
+    public User(String name, Integer id, int age) {
         this.name = name;
         this.id = id;
+        this.age = age;
     }
 
     public String getName() {
@@ -24,11 +25,20 @@ public class User {
         this.id = id;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "name='" + name + '\'' +
-                ", id='" + id + '\'' +
+                ", id=" + id +
+                ", age=" + age +
                 '}';
     }
 }
