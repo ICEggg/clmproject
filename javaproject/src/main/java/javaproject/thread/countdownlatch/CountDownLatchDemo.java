@@ -61,7 +61,7 @@ public class CountDownLatchDemo {
 
     public static void main(String[] args) {
         Test test = new Test();
-        new Thread(()->test.way()).start();
-        new Thread(()->test.way2()).start();
+        new Thread(()->test.way(),"a").start();
+        new Thread(()->test.way2(),"b").start();
     }
 }

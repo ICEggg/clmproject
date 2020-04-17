@@ -1,5 +1,6 @@
 package org.clm.demo.mvc.primiary.service;
 
+import org.clm.demo.exception.CommonException;
 import org.clm.demo.mvc.primiary.dao.WordRepository;
 import org.clm.demo.mvc.primiary.entity.wc_table;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,5 +60,19 @@ public class WordService {
         System.out.println(5/0);
         wordRepository.save(wc2);
     };
+
+    public int  test(){
+        System.out.println("service test");
+
+        int a = 1/0;
+
+        /*try {
+            int a = 1/0;
+        } catch (Exception e) {
+            throw new CommonException("不能为0");
+        }*/
+
+        return 1;
+    }
 
 }

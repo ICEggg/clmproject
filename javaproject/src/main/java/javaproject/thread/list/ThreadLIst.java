@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 多线程处理同一个list的数据
+ * 多线程处理同一个list的数据,其实就是把一个list拆成多份，每个线程处理自己的一份
  */
 public class ThreadLIst {
 
