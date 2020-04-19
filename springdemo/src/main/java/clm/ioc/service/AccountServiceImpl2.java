@@ -29,7 +29,7 @@ public class AccountServiceImpl2 implements IAccountService{
 //    }
 
     public void saveCount() {
-        //dao.saveAcount();
+        //clm.dao.saveAcount();
         System.out.println("saveCount方法执行了  "+name+"  "+age+"  "+birthday);
     }
 

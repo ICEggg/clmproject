@@ -17,7 +17,7 @@
 
 
 1.单例模式Single：
-工作中用Mgr01就够了，静态内部类也蛮好的，Mgr04是最完美的写法
+工作中用Mgr01就够了，静态内部类也蛮好的，Mgr04是最完美的写法。java.lang.Runtime中就使用了单例
 
 2.策略模式Strategy：（java 的comparator）
 java中的Comparator用的就是策略模式
@@ -26,7 +26,7 @@ java中的Comparator用的就是策略模式
 策略模式，在排序的时候，传入对应的数组，传入要比较的策略（按照weight，还是height来排序），不改变原来的代码，
 增加一个类，实现对应的接口，可扩展性就变得很好
 
-3.工厂模式Factory：
+3.工厂模式Factory： jdk的Calendar类中用到
 简单工厂：
     最简单的一个工厂：比如CarFactory有一个create方法返回一个Car对象。
 静态工厂：
@@ -40,7 +40,7 @@ spingioc：依赖注入，控制反转。（有空了看一下！）
 4.外观模式Facade（消息中间件，kafka）
     比如一个人买基金，基金经理去买股票。这就相当于外观模式。具体看代码
 
-5.装饰者模式Decorator
+5.装饰者模式Decorator        (java.io.FileInputStream用到了）
     可以对类的属性进行扩展。比如一杯奶茶，可以加椰果，加糖，加珍珠等等，可以无限往后加。具体看代码
 
 6.责任链ChainOfResponsibility（Servlet的过滤器）
@@ -78,11 +78,11 @@ spingioc：依赖注入，控制反转。（有空了看一下！）
     遇到这种情况，就不适合用观察者模式了
 
 
-13.构建器Builder
+    13.构建器Builder（java.lang.StringBuilder用到了建造者模式）
     就是为了构造一个对象。（构造方法）。比如构造一个地形用到几十个参数，那太多了，所以就分而治之
     又或者，构造一个对象要几十个参数，有的只要构造其中三个，有的只要构造其中五个，每个都写一个构造方法太多了
 
-14.适配器模式Adapter
+14.适配器模式Adapter (springmvc中的HandlerAdapter)
     比如手机充电器，中国的和欧洲的插座是不一样的，中国电压220V，欧洲电压110V，所以中间需要一个转接头
     中间的转接头就是适配器，能让我的手机，在其他的插座上也能充电
 
@@ -90,7 +90,7 @@ spingioc：依赖注入，控制反转。（有空了看一下！）
     所以就需要一个转换器把字节流的，转换成一行一行的，
     InputStreamReader就相当于是转换器
 
-15.桥接模式bridge
+15.桥接模式bridge   （jdbc 的 Driver接口）
     比如有Gift，有WarmGift和ColdGift等等。。，这两个下面可能还有子类，子类下还有子类。。
 
     桥接模式：分离抽象于具体实现，让他们可以独自发展
@@ -103,7 +103,7 @@ spingioc：依赖注入，控制反转。（有空了看一下！）
     可以结合责任链
     比如要发生很多的回退
 
-17.原型模式Prototype（java自带原型模式，Object.clone）
+17.原型模式Prototype（java自带原型模式，Object.clone）(sping创建bean就使用了原型模式)
     比如一个对象，我需要一个和他相同或者几乎相同的对象，
     就可以克隆一份出来。这就是原型模式
     包括深克隆，浅克隆，

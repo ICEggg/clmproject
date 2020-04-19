@@ -26,7 +26,7 @@ public interface IAccountDao {
             @Result(column = "uid",property = "uid"),
             @Result(column = "money",property = "money"),
             @Result(column = "uid",property = "user",
-                    one=@One(select = "clm.annotation.dao.IUserDao.findUserById",fetchType = FetchType.EAGER))
+                    one=@One(select = "clm.annotation.clm.dao.IUserDao.findUserById",fetchType = FetchType.EAGER))
     })
     List<Account> findAllAccount();
 

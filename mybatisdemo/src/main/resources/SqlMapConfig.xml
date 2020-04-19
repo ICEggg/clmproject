@@ -41,8 +41,8 @@
 
     <!--  使用typeAlias配置别名， 只能配置domain中的类的别名 -->
     <typeAliases>
-<!--        <typeAlias type="clm.xml.domain.User" alias="user"></typeAlias>-->
-        <package name="clm.xml.domain"/>
+<!--        <typeAlias type="clm.xml.clm.domain.User" alias="user"></typeAlias>-->
+        <package name="clm.xml.clm.domain"/>
     </typeAliases>
 
     <!--配置环境-->
@@ -64,8 +64,8 @@
 
     <!--指定映射配置文件的位置，映射配置文件指的是每个dao独立的配置文件-->
     <mappers>
-<!--        <mapper resource="clm/xml/dao/IUserDao.xml"></mapper>-->
-        <package name="clm.xml.dao"/>
+<!--        <mapper resource="clm/xml/clm.dao/IUserDao.xml"></mapper>-->
+        <package name="clm.xml.clm.dao"/>
     </mappers>
 
 </configuration>

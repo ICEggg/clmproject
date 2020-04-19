@@ -1,44 +1,32 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /local
 spring:
   profiles:
     active: dev #调用application-dev.yml 如果写的是pro，调用的就是application-pro.yml
+  devtools:
+    restart:
+      enabled: true   #开启热部署
   datasource: #primary和secondary为两个数据源，这两个对应的包下，可以调用对应的库
-    primary:
-      driver-class-name: com.mysql.jdbc.Driver
-      jdbc-url: jdbc:mysql://127.0.0.1:3306/mytable?useUnicode=true&characterEncoding=UTF-8&createDatabaseIfNotExist=true
-      password: root
-      username: root
-    secondary:
-      driver-class-name: com.mysql.jdbc.Driver
-      jdbc-url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&createDatabaseIfNotExist=true
-      password: root
-      username: root
+    #    primary:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/springbootdb1?useUnicode=true&characterEncoding=UTF-8&createDatabaseIfNotExist=true
+    password: root
+    username: root
+  #    secondary:
+  #      driver-class-name: com.mysql.jdbc.Driver
+  #      jdbc-url: jdbc:mysql://127.0.0.1:3306/springbootdb2?useUnicode=true&characterEncoding=UTF-8&createDatabaseIfNotExist=true
+  #      password: root
+  #      username: root
   jpa :
     hibernate:
       ddl-auto: update
     show-sql: true
   application:
-    name: microservice-stdcode  #配置应用的名称
-  #这是 springboot2.0版本 配置上传文件的大小，还没测试过
-  servlet:
-    multipart:
-      max-file-size: 100MB
-      max-request-size: 100MB
+    name: springbootdemo  #配置应用的名称
 
-#打开监控actuator 127.0.0.1:9001/monitor  制定了端口和basepath
+#这个参数设置为false后，spring-boot-starter-actuator ，用户才能通过浏览器访问到程序运行的状态信息
 management:
-  server:
-    port: 9001   #actuator端口
-  endpoints:  #修改访问路径  2.0之前默认是/   2.0默认是 /actuator  可以通过这个属性值修改
-    web:
-      base-path: /monitor
-      exposure:
-        include: "*"   #开放所有页面节点  默认只开启了health、info两个节点
-    health:
-      show-details: always   #显示健康具体信息  默认不会显示详细信息,(好像没用啊)
-
-#打开监控actuator，简单版，127.0.0.1:8083/dev/actuator
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: "*"
+  security:
+    enabled: false
