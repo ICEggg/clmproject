@@ -8,7 +8,7 @@ import java.util.List;
  * 写一个固定容量的同步容器，拥有put和get方法，以及getcount方法
  * 能够支持2个生产者线程和10个消费者线程的阻塞调用
  *
- * 使用wait，notify，notifyall完成
+ * 使用wait，notify，notifyall完成  wait会释放锁，notify不会释放锁
  */
 public class QuestionMy {
 

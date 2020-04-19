@@ -15,5 +15,8 @@ testport: 1111
 #是否开启参数验证  开启：1  关闭：0
 isValidated: 1
 
+#登录token存到session：0，存到redis：1
+saveTokenLocation: 0
+
 
 

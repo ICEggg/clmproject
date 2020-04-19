@@ -4,10 +4,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.clm.demo.entity.BaseController;
+import lombok.extern.slf4j.Slf4j;
 import org.clm.demo.entity.BaseResponse;
 import org.clm.demo.entity.ResultCode;
 import org.clm.demo.exception.CommonException;
+import org.clm.demo.mvc.primiary.entity.User;
 import org.clm.demo.mvc.primiary.entity.wc_table;
 import org.clm.demo.mvc.primiary.service.WordService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,14 @@ import javax.validation.constraints.Pattern;
 import java.util.List;
 import java.util.Optional;
 
+
+@Slf4j
 @Validated
 @RestController
 @RequestMapping(value = "/wordCon")
 @Api(value = "WordController操作api")
-public class WordController extends BaseController {
+public class WordController {
+
     @Autowired
     private WordService wordService;
 
@@ -89,31 +93,14 @@ public class WordController extends BaseController {
         wordService.addTwoWord();
     }
 
+
+
     @PostMapping(value = "/test")
-    public BaseResponse test() throws CommonException {
-        BaseResponse response = new BaseResponse();
+    public BaseResponse test(@SessionAttribute("user") User user) throws CommonException {
+        BaseResponse<User> response = new BaseResponse();
+        log.info("=======================>"+user);
+        response.setData(user);
 
-
-        int i = 0;
-        /*try {
-            i = wordService.test();
-            System.out.println(i);
-        } catch (Exception e) {
-            response.setResultCode(ResultCode.RESULT_ERROR);
-            response.setMessage(e.getMessage());
-        }*/
-
-        //i = wordService.test();
-        //System.out.println(i);
-
-        try {
-            i = 1/0;
-        } catch (Exception e) {
-            //e.printStackTrace();
-            throw new CommonException("aaaaaaaaaaaa");
-        }
-
-        System.out.println(i);
         return response;
     }
 

@@ -18,6 +18,11 @@ public class CommonException extends Exception  {
         this.resultCode = resultCode;
     }
 
+    public CommonException(String message,ResultCode resultCode) {
+        super(message);
+        this.resultCode = resultCode;
+    }
+
     public ResultCode getResultCode() {
         return resultCode;
     }

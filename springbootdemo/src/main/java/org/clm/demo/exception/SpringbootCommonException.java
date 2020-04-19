@@ -31,11 +31,11 @@ public class SpringbootCommonException {
     @ResponseBody
     @ExceptionHandler(CommonException.class)
     public BaseResponse commonExceptionHandler(CommonException e) {
-        log.error("======>server catch exception:{}, exception:{}", e.getMessage(), e);
+        log.error("进入全局异常处理器", e.getMessage(), e);
 
         BaseResponse response = new BaseResponse();
         response.setMessage(e.getMessage());
-        response.setResultCode(e.getResultCode());
+        response.setResultCode(ResultCode.RESULT_ERROR);
 
         return response;
     }
@@ -49,7 +49,7 @@ public class SpringbootCommonException {
     @ExceptionHandler(value =Exception.class)
     @ResponseBody
     public BaseResponse exceptionHandler(HttpServletRequest req, Exception e){
-        log.error("未知异常！原因是:",e);
+        log.error("未知异常！原因是:",e.getMessage(),e);
 
         BaseResponse response = new BaseResponse();
         response.setMessage(e.getMessage());
