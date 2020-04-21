@@ -1,30 +1,35 @@
 package javaproject.mytest;
 
 import java.util.*;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
+import java.util.concurrent.atomic.AtomicInteger;
 public class ThreadTest {
 
     public static void main(String[] args) {
-        MyList<Integer> list = new MyList<>();
+
+        MyList<String> list = new MyList<>();
+
+        for (int j = 0; j < 1; j++) {
+            new Thread(()->{
+                /*for (int i = 0; i < 100; i++){
+                    System.out.println(Thread.currentThread().getName()+"消费了："+list.get());
+                }*/
+                while(list.size() > 0){
+                    System.out.println(Thread.currentThread().getName()+"消费了："+list.get());
+                }
+
+            },"consumer"+j).start();
+        }
+
+        for (int j = 0; j < 1; j++) {
+            new Thread(()->{
+                for (int i = 0; i < 1000; i++) {
+                    list.add(Thread.currentThread().getName()+","+i);
+                    System.out.println(Thread.currentThread().getName()+"生产了："+Thread.currentThread().getName()+","+i);
+                }
+            },"producer"+j).start();
+        }
 
 
-        new Thread(()->{
-            for (int i = 0; i < 100; i++){
-                System.out.println("消费者消费了："+list.get());
-            }
-
-        },"consumer").start();
-
-        new Thread(()->{
-            for (int i = 0; i < 100; i++) {
-                list.add(i);
-                System.out.println("生产者生产了："+i);
-            }
-        },"producer").start();
 
     }
 
@@ -40,21 +45,20 @@ class MyList<T> implements Collection_<T>{
     //List<T> list = Collections.synchronizedList(new ArrayList<>());
     List<T> list = new LinkedList<>();
     int MAX = 10;
-    int count = 0;
+    AtomicInteger count = new AtomicInteger(0);
 
     @Override
     public synchronized void add(T t) {
         while(list.size() == 10){
             try {
-                //System.out.println("producer wait");
-                this.notifyAll();
+                //this.notifyAll();
                 this.wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
         list.add(t);
-        ++count;
+        count.incrementAndGet();
         this.notifyAll();
     }
 
@@ -62,21 +66,21 @@ class MyList<T> implements Collection_<T>{
     public synchronized T get(){
         while (list.size()<=0){
             try {
-                //System.out.println("consumer wait");
-                this.notifyAll();
+                //this.notifyAll();
                 this.wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        --count;
+        count.decrementAndGet();
         T t = list.remove(0);
+        this.notifyAll();
         return t;
     }
 
     @Override
-    public int size() {
-        return count;
+    public synchronized int size() {
+        return count.get();
     }
 
 }
