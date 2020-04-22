@@ -20,8 +20,8 @@ import java.util.Map;
  * 这个功能是，调用每一个接口，日志打印这个接口执行的时间，地址，参数等
  */
 
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class LogInterceptor {
     static Logger logger = LoggerFactory.getLogger(LogInterceptor.class);
 

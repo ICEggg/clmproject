@@ -1,19 +1,20 @@
 package org.clm.demo.util;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SignatureException;
+import org.clm.demo.exception.CommonException;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Date;
 import java.util.Map;
-
-@EnableConfigurationProperties(JwtUtil.class)
-@ConfigurationProperties("jwt.config")
+//下面这两个注解，是让实体从配置文件读取信息
+//@EnableConfigurationProperties(JwtUtil.class)
+//@ConfigurationProperties("jwt.config")
+@Component
 public class JwtUtil {
     //签名私钥
     private Key key=Keys.secretKeyFor(SignatureAlgorithm.HS256);
@@ -44,8 +45,13 @@ public class JwtUtil {
         return token;
     }
 
-    public Claims parseJwt(String token){
-        Claims claims = Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody();
+    public Claims parseJwt(String token) throws CommonException {
+        Claims claims = null;
+        try {
+            claims = Jwts.parser().setSigningKey(key).parseClaimsJws(token).getBody();
+        } catch (Exception e) {
+            throw new CommonException("token解析异常，请传入正确的token");
+        }
         System.out.println(claims.getId());
         System.out.println(claims.getSubject());
         return claims;

@@ -1,18 +1,20 @@
 package org.clm.demo.mvc.primiary.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import javax.persistence.Column;
+import lombok.NoArgsConstructor;
+import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
 
-    @Pattern(regexp="^[0-9]",message = "请输入正确的id")
-    @javax.persistence.Id
+    //@Pattern(regexp="^[0-9]",message = "请输入正确的id")
+    @Id
     private String Id;
 
     @NotNull(message = "用户名不能为空")
@@ -23,10 +25,8 @@ public class User {
     @Column
     private String password;
 
-    public User(String id, String username, String password) {
-        Id = id;
+    public User(@NotNull(message = "用户名不能为空") String username, @NotNull(message = "密码不能为空") String password) {
         this.username = username;
         this.password = password;
     }
-
 }

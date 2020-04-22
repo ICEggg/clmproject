@@ -9,7 +9,7 @@ package javaproject.thread.threadlocal;
  */
 public class ThreadLocalTest2 {
     //static Person person = new Person();
-    private static ThreadLocal<Person> tl = new ThreadLocal<>();
+    private static ThreadLocal<String> tl = new ThreadLocal<>();
     static class Person{
         String name ="zhangsan";
     }
@@ -31,7 +31,7 @@ public class ThreadLocalTest2 {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            tl.set(new Person());
+            tl.set("a");
         }).start();
     }
 }

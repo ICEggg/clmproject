@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 监听#文件夹#里文件变化，如果该文件夹下的文件有变化，就会打印出信息
  */
-@Component
+//@Component
 public class FileMonitor  {
     //监听#文件夹#里文件变化
     /*@PostConstruct

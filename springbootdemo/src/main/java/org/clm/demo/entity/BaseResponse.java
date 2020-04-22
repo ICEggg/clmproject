@@ -12,7 +12,9 @@ public class BaseResponse<T> {
 	
 	private ResultCode resultCode;	//结果状态码
 	
-	private List<T> data;			//数据集
+	//private List<T> data;			//数据集
+
+	private T data;
 	
 	private List<Object> otherData;	//其它数据
 	
@@ -24,14 +26,6 @@ public class BaseResponse<T> {
 
 	public void setResultCode(ResultCode resultCode) {
 		this.resultCode = resultCode;
-	}
-
-	public List<T> getData() {
-		return data;
-	}
-
-	public void setData(List<T> data) {
-		this.data = data;
 	}
 
 	public List<Object> getOtherData() {
@@ -50,4 +44,11 @@ public class BaseResponse<T> {
 		this.message = message;
 	}
 
+	public T getData() {
+		return data;
+	}
+
+	public void setData(T data) {
+		this.data = data;
+	}
 }
