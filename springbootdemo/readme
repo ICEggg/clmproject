@@ -50,3 +50,11 @@
         DENY：日志将立即被抛弃不再经过其他过滤器
         NEUTRAL：有序列表里的下个过滤器过接着处理日志
         ACCEPT：日志会被立即处理，不再经过剩余过滤器
+
+12、 post：   相当于insert操作
+     get：    相当于select操作
+     delete：相当于delete操作
+     put：    相当于update操作
+     put和post的区别：
+        POST主要作用在一个集合资源之上的（url），而PUT主要作用在一个具体资源之上的（url/xxx），
+        通俗一下讲就是，如URL可以在客户端确定，那么可使用PUT，否则用POST

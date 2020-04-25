@@ -2,3 +2,11 @@ server:
   servlet:
     context-path: /pro
   port: 8082
+
+
+#日志
+logging:
+  level:
+    org.clm.demo: info
+  path: ./springbootdemo/logs/pro  #日志文件夹路径
+  config: classpath:log/logback-pro.xml #可以根据不同的环境指定不同的xml配置文件

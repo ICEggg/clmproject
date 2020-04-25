@@ -2,21 +2,10 @@ server:
   servlet:
     context-path: /dev
   port: 8083
-pageSize: 100
-devName: aaa
-
-
-developer:
-  name: bbb
-  id: 1
-  age: 11
-
-testport: 1111
 
 #是否开启参数验证  开启：1  关闭：0
-isValidated: 1
-#登录token存到session：0，存到redis：1
-saveTokenLocation: 0
+#isValidated: 1
+
 
 
 #整合kafka
@@ -44,9 +33,10 @@ spring:
     value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
 
-#日志
+#日志,日志级别： DEBUG<INFO<WARN<ERROR<FATAL
 logging:
   level:
     org.clm.demo: info
-  path: ./logs  #日志打印路径
+  path: ./springbootdemo/logs/dev  #日志打印路径
+  #file:
   config: classpath:log/logback-dev.xml #可以根据不同的环境指定不同的xml配置文件

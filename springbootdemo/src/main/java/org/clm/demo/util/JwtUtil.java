@@ -2,10 +2,8 @@ package org.clm.demo.util;
 
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
-import io.jsonwebtoken.security.SignatureException;
 import org.clm.demo.exception.CommonException;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.clm.demo.mvc.primiary.entity.User;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
@@ -23,17 +21,15 @@ public class JwtUtil {
 
     /**
      * jwt生成token
-     * @param id
-     * @param name
      * @param map
      * @return
      */
-    public String createJwt(String id , String name, Map<String,Object> map){
+    public String createJwt(User user, Map<String,Object> map){
         long now = System.currentTimeMillis();
         long exp = now+ttl;
 
-        JwtBuilder jwtBuilder = Jwts.builder().setId(id)
-                .setSubject(name)
+        JwtBuilder jwtBuilder = Jwts.builder().setId(user.getPassword())
+                .setSubject(user.getUsername())
                 .setIssuedAt(new Date())
                 .signWith(key);
 
@@ -52,8 +48,6 @@ public class JwtUtil {
         } catch (Exception e) {
             throw new CommonException("token解析异常，请传入正确的token");
         }
-        System.out.println(claims.getId());
-        System.out.println(claims.getSubject());
         return claims;
     }
 }

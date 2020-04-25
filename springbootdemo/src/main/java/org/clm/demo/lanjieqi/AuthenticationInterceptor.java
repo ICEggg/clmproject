@@ -1,11 +1,13 @@
 package org.clm.demo.lanjieqi;
 
 import io.jsonwebtoken.Claims;
+import lombok.extern.slf4j.Slf4j;
 import org.clm.demo.entity.ResultCode;
 import org.clm.demo.exception.CommonException;
 import org.clm.demo.mvc.primiary.entity.User;
 import org.clm.demo.mvc.primiary.service.UserService;
 import org.clm.demo.util.JwtUtil;
+import org.clm.demo.util.UserContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -19,7 +21,7 @@ import javax.servlet.http.HttpSession;
 /**
  * 拦截器
  * 引用场景：登录模块，拦截请求头中是否带token
- */
+ */@Slf4j
 @Component
 public class AuthenticationInterceptor implements HandlerInterceptor {
 
@@ -31,32 +33,36 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 
     //拦截请求，进入api之前要做的事
     @Override
-    public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object object) throws Exception {
-        //System.out.println("拦截器preHandle："+"org.clm.demo.lanjieqi.AuthenticationInterceptor");
-        //return true;
-
-
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
+                             Object object) throws Exception {
         //验证token的逻辑
-        System.out.println("进入拦截器："+"org.clm.demo.lanjieqi.AuthenticationInterceptor");
-        System.out.println(httpServletRequest.getRequestURI());
-        String url = httpServletRequest.getRequestURI();
-        if(url.contains("/dev/userCon/login") || url.contains("/dev/swagger-ui.html")){
+        log.info("进入拦截器："+"org.clm.demo.lanjieqi.AuthenticationInterceptor");
+        String url = request.getRequestURI();
+        if(url.contains("/userCon/login") || url.contains("/swagger-ui.html")){
             //这两个链接放过去，不拦截
             return true;
         }
 
-        String token = httpServletRequest.getHeader("token");// 从 http 请求头中取出 token
-        if(!"".equals(token) && token!=null){
-            Claims claims = jwtUtil.parseJwt(token);
-           /* if(claims!=null){
-                String password = (String) claims.getId();
-                String username = (String) claims.getSubject();
-            }*/
-            return true;
+        User user = getUser(request, response);
+        if(user == null){
+            throw new CommonException("无效的token");
         }else{
-            throw new CommonException("请传入token");
+            UserContextUtil.setUser(user);
+            return true;
         }
 
+        /*String token = httpServletRequest.getHeader("token");// 从 http 请求头中取出 token
+        if(!"".equals(token) && token!=null){
+            Claims claims = jwtUtil.parseJwt(token);
+            String password = claims.getId();
+            String username = claims.getSubject();
+            User user = userService.getUserByNameAndPwd(username, password);
+            if(user != null){
+                return true;
+            }
+        }else{
+            throw new CommonException("请传入token");
+        }*/
     }
 
     //api执行之后要做的事
@@ -75,6 +81,20 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         System.out.println("拦截器afterCompletion：所有api执行完了");
     }
 
+
+    private User getUser(HttpServletRequest request, HttpServletResponse response) throws CommonException {
+        User user = null;
+        String token = request.getHeader("token");// 从 http 请求头中取出 token
+        if(!"".equals(token) && token!=null){
+            Claims claims = jwtUtil.parseJwt(token);
+            String password = claims.getId();
+            String username = claims.getSubject();
+            user = userService.getUserByNameAndPwd(username, password);
+        }else{
+            throw new CommonException("请传入token");
+        }
+        return user;
+    }
 
 
 

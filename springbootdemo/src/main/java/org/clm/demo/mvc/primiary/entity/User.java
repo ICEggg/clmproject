@@ -3,15 +3,19 @@ package org.clm.demo.mvc.primiary.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
-@Entity
+@Entity(name = "user")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+@ToString
+public class User implements Serializable {
 
     //@Pattern(regexp="^[0-9]",message = "请输入正确的id")
     @Id

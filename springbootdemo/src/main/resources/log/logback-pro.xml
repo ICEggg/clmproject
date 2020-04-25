@@ -52,7 +52,7 @@
         </rollingPolicy>
     </appender>
     <root level="info">
-        <appender-ref ref="consoleLog"/>    <!--代表调用name=consoleLog 的 appender，在控制台打印日志-->
+        <appender-ref ref="consoleLog"/>
         <appender-ref ref="fileInfoLog"/>
         <appender-ref ref="fileErrorLog"/>
     </root>

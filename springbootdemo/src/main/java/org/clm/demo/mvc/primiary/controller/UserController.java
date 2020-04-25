@@ -15,8 +15,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -56,19 +58,22 @@ public class UserController{
             @ApiImplicitParam(paramType="query", name = "password", value = "密码", required = true, dataType = "String")
     })
     public BaseResponse<String> login(@RequestParam String username, @RequestParam String password,
-                                      HttpSession session) throws CommonException {
+                                      HttpSession session, HttpServletRequest request) throws CommonException {
         BaseResponse<String> response = new BaseResponse<String>();
 
         //从数据库查是否有该用户
         User user = userService.getUserByNameAndPwd(username, password);
         if(user != null){
+            //这个map，是创建token的时候，附加的信息
             Map<String,Object> map =new HashMap<>();
             map.put("creater","user");
-            String token = jwtUtil.createJwt(password, username, map);
+            String token = jwtUtil.createJwt(user, map);
 
-            session.setAttribute("user",user);
+            //不需要设置session，因为有token了
+            //request.setAttribute(token,user);
+            //session.setAttribute(token,user);
             //session.setAttribute("token",token);
-            session.setMaxInactiveInterval(-1);//设置单位为秒，设置为-1永不过期
+            //session.setMaxInactiveInterval(-1);//设置单位为秒，设置为-1永不过期
 
             response.setMessage(token);
             response.setResultCode(ResultCode.RESULT_SUCCESS);
@@ -76,6 +81,15 @@ public class UserController{
             throw new CommonException("请输入正确的用户名密码");
         }
 
+        return response;
+    }
+
+    @ResponseBody
+    @GetMapping(value = "/getAllUser")
+    public BaseResponse<List<User>> getAllUser(){
+        BaseResponse<List<User>> response = new BaseResponse<>();
+        List<User> allUser = userService.getAllUser();
+        response.setData(allUser);
         return response;
     }
 

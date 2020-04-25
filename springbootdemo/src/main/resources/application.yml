@@ -4,7 +4,7 @@ server:
     context-path: /local
 spring:
   profiles:
-    active: dev #调用application-dev.yml 如果写的是pro，调用的就是application-pro.yml
+    active: pro #调用application-dev.yml 如果写的是pro，调用的就是application-pro.yml
   devtools:
     restart:
       enabled: true   #开启热部署
@@ -37,3 +37,18 @@ management:
         include: "*"   #开放所有页面节点  默认只开启了health、info两个节点
     health:
       show-details: always   #显示健康具体信息  默认不会显示详细信息,(好像没用啊)
+
+
+#登录token存到session：0，存到redis：1
+saveTokenLocation: 0
+
+
+pageSize: 100
+devName: aaa
+developer:
+  name: bbb
+  id: 1
+  age: 11
+testport: 1111
+
+

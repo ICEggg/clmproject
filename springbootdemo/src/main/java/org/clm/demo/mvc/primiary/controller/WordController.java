@@ -4,13 +4,13 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
 import org.clm.demo.entity.BaseResponse;
 import org.clm.demo.exception.CommonException;
+import org.clm.demo.globaluser.CurrentUser;
 import org.clm.demo.mvc.primiary.entity.User;
 import org.clm.demo.mvc.primiary.entity.wc_table;
 import org.clm.demo.mvc.primiary.service.WordService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +18,12 @@ import javax.validation.constraints.Pattern;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j  //作用：代替private static final Logger logger = LoggerFactory.getLogger(WordController.class);这句话
 @Validated
 @RestController
 @RequestMapping(value = "/wordCon")
 @Api(value = "WordController操作api")
-public class WordController {
-    private static final Logger logger = LoggerFactory.getLogger(WordController.class);
+public class WordController{
 
     @Autowired
     private WordService wordService;
@@ -31,7 +31,7 @@ public class WordController {
     @GetMapping(value = "/words")
     @ApiOperation(value = "获取word列表")
     public List<wc_table> wordList() {
-        logger.info("ooooooooooooooooooooooooooooooooooooooo");
+        log.info("ooooooooooooooooooooooooooooooooooooooo");
         return wordService.wordList();
     }
 
@@ -92,12 +92,14 @@ public class WordController {
 
 
 
-    @PostMapping(value = "/test")
-    public BaseResponse test(@SessionAttribute("user") User user) throws CommonException {
+    @PostMapping(value = "/test")   //@SessionAttribute("user")User user1,
+    public BaseResponse test(@CurrentUser User user) throws CommonException {
         BaseResponse<User> response = new BaseResponse();
-        logger.info("=======================>"+user);
-        response.setData(user);
-
+        try {
+            response.setData(user);
+        } catch (Exception e) {
+            throw new CommonException("eeeeeeeeee");
+        }
         return response;
     }
 

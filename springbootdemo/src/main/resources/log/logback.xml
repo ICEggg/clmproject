@@ -3,7 +3,7 @@
     <!-- 属性文件:在properties/yml文件中找到对应的配置项 -->
     <springProperty scope="context" name="logging.path" source="logging.path"/>
     <!--每个logger都关联到logger上下文，默认上下文名称为“default”。但可以使用contextName标签设置成其他名字，用于区分不同应用程序的记录-->
-    <contextName>魔力小佳佳</contextName>
+    <contextName>logdefaultSetting</contextName>
 
     <appender>
 
