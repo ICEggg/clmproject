@@ -1,6 +1,7 @@
 package org.clm.demo.exception;
 
 
+import lombok.extern.slf4j.Slf4j;
 import org.clm.demo.entity.ResultCode;
 
 /**
