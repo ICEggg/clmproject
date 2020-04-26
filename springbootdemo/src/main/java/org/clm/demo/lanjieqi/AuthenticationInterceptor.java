@@ -2,26 +2,23 @@ package org.clm.demo.lanjieqi;
 
 import io.jsonwebtoken.Claims;
 import lombok.extern.slf4j.Slf4j;
-import org.clm.demo.entity.ResultCode;
 import org.clm.demo.exception.CommonException;
 import org.clm.demo.mvc.primiary.entity.User;
 import org.clm.demo.mvc.primiary.service.UserService;
 import org.clm.demo.util.JwtUtil;
 import org.clm.demo.util.UserContextUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  * 拦截器
  * 引用场景：登录模块，拦截请求头中是否带token
- */@Slf4j
+ */
+@Slf4j
 @Component
 public class AuthenticationInterceptor implements HandlerInterceptor {
 

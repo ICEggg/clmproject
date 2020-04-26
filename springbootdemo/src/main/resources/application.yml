@@ -38,11 +38,12 @@ management:
     health:
       show-details: always   #显示健康具体信息  默认不会显示详细信息,(好像没用啊)
 
-
 #登录token存到session：0，存到redis：1
 saveTokenLocation: 0
 
 
+
+#测试数据
 pageSize: 100
 devName: aaa
 developer:
