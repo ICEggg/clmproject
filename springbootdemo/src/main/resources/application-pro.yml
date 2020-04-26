@@ -1,7 +1,7 @@
 server:
   servlet:
     context-path: /pro
-  port: 8082
+  port: 8080
 
 #日志
 logging:

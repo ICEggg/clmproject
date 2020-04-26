@@ -39,6 +39,10 @@ public class ContorllerAspect {
     @Pointcut("execution(* com.jn.primiary.office.controller.*.*(..))")
     public void FileUploadController(){}
 
+    //实现这个接口的就拦截下来，改接口只是作为一个标记，没有任何抽象方法
+    @Pointcut("this(com.jn.primiary.beyondsoft.aspect.CheckLoginEndPoint)")
+    //@Pointcut("execution(* com.jn.primiary.beyondsoft.controller.*.*(..))")
+    public void cutController(){}
 
 
     //设置白名单，有这个注解的就不拦截

@@ -12,16 +12,16 @@ import org.springframework.kafka.core.ProducerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-@Configuration
-@EnableKafka//配合@Configuration注解一起用，会激活Kafka的基于注解驱动的消息消费功能
+//@Configuration
+//@EnableKafka//配合@Configuration注解一起用，会激活Kafka的基于注解驱动的消息消费功能
 public class KafkaConfig {
     @Value("${spring.kafka.bootstrap-servers}")
     private String servers;
-    @Value("${spring.kafka.producer.retries}")
+    @Value("${spring.producer.retries}")
     private int retries;
-    @Value("${spring.kafka.producer.batch-size}")
+    @Value("${spring.producer.batch-size}")
     private int batchSize;
-    @Value("${spring.kafka.producer.buffer-memory}")
+    @Value("${spring.producer.buffer-memory}")
     private int bufferMemory;
 
 

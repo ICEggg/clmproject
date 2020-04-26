@@ -3,9 +3,11 @@ package org.clm.demo.mvc.primiary.controller;
 import com.alibaba.fastjson.JSONObject;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
+import org.clm.demo.entity.BaseResponse;
 import org.clm.demo.mvc.primiary.entity.Standard;
 import org.clm.demo.mvc.primiary.service.StandardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -54,6 +56,15 @@ public class StandardController {
     public void findStandardByIdNameForm(@PathVariable String id,@RequestParam String name){
         List<Standard> standardList = standardService.findStandardByIdName(id, name);
         log.info(standardList.toString());
+    }
+
+    @GetMapping(value = "/findAllStandardByPage")
+    public BaseResponse<List<Standard>> findAllStandardByPage(){
+        BaseResponse<List<Standard>> response = new BaseResponse<>();
+        List<Standard> standardList = standardService.findAllStandardByPage();
+        response.setData(standardList);
+        log.info(standardList.toString());
+        return response;
     }
 
 }

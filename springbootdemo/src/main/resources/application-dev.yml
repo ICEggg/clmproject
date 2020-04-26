@@ -1,7 +1,7 @@
 server:
   servlet:
     context-path: /dev
-  port: 8083
+  port: 8080
 
 #是否开启参数验证  开启：1  关闭：0
 #isValidated: 1
