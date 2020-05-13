@@ -9,6 +9,8 @@ import java.util.concurrent.CountDownLatch;
  * 多线程环境下，写时效率低，读时效率高
  * 适合写少读多的环境
  *
+ * 应用：比如一个监听器list，用户要一直去读监听器的内容，但是添加一个新的监听器就不经常
+ *
  * 当往里添加一个元素的时候，会把容器复制一个新的，然后往新的里面添加一个，然后指向这个新的
  */
 public class T02_CopyOnWriteList {

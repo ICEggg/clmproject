@@ -22,6 +22,11 @@ public class Standard {
     private String id;
     @Id
     private String version;
+
     @Column(name = "name")
     private String name;
+
+
 }
+
+

@@ -19,7 +19,10 @@ import java.util.concurrent.CountDownLatch;
  * ConcurrentSkipListMap 跳表排序，插入速度比较慢因为做排序了，查询比较快因为做排序了
  *
  * 不加锁：hashmap,treemap,linkedhashmap
- * 加锁的：hashtable（现在用的比较少了）（并发量不高的时候可以用）
+ * 加锁的：hashtable（现在用的比较少l了，并发量不高的时候可以用）
+ * （慢是因为hashtable锁定的时候，锁定的是一整个对象，
+ * 而ConcurrentHashMap快是因为他把对象分成了16份，每次add的时候，只锁定要加入的那一部分）
+ *
  *并发量更高的时候用ConcurrentHashMap
  * 并发量更高，并且需要排序的时候，用ConcurrentSkipListMap
  * Collections.synchronizedmap(map)/synchronizedlist(list) 可以把不带锁的map/list变成带锁的（并发量不高的时候）

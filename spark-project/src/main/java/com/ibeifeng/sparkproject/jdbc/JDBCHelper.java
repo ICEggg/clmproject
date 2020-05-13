@@ -15,7 +15,7 @@ import com.ibeifeng.sparkproject.constant.Constants;
  * 
  * 在正式的项目的代码编写过程中，是完全严格按照大公司的coding标准来的
  * 也就是说，在代码中，是不能出现任何hard code（硬编码）的字符
- * 比如“张三”、“com.mysql.jdbc.Driver”
+ * 比如“张三”、“com.connection.jdbc.Driver”
  * 所有这些东西，都需要通过常量来封装和使用
  * 
  * @author Administrator
@@ -24,13 +24,13 @@ import com.ibeifeng.sparkproject.constant.Constants;
 public class JDBCHelper {
 	
 	// 第一步：在静态代码块中，直接加载数据库的驱动
-	// 加载驱动，不是直接简单的，使用com.mysql.jdbc.Driver就可以了
+	// 加载驱动，不是直接简单的，使用com.connection.jdbc.Driver就可以了
 	// 之所以说，不要硬编码，他的原因就在于这里
 	// 
-	// com.mysql.jdbc.Driver只代表了MySQL数据库的驱动
+	// com.connection.jdbc.Driver只代表了MySQL数据库的驱动
 	// 那么，如果有一天，我们的项目底层的数据库要进行迁移，比如迁移到Oracle
 	// 或者是DB2、SQLServer
-	// 那么，就必须很费劲的在代码中，找，找到硬编码了com.mysql.jdbc.Driver的地方，然后改成
+	// 那么，就必须很费劲的在代码中，找，找到硬编码了com.connection.jdbc.Driver的地方，然后改成
 	// 其他数据库的驱动类的类名
 	// 所以正规项目，是不允许硬编码的，那样维护成本很高
 	// 

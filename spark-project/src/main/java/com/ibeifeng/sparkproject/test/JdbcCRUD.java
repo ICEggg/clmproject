@@ -51,7 +51,7 @@ public class JdbcCRUD {
 		// 定义数据库连接对象
 		// 引用JDBC相关的所有接口或者是抽象类的时候，必须是引用java.sql包下的
 		// java.sql包下的，才代表了java提供的JDBC接口，只是一套规范
-		// 至于具体的实现，则由数据库驱动来提供，切记不要引用诸如com.mysql.jdbc包的类
+		// 至于具体的实现，则由数据库驱动来提供，切记不要引用诸如com.connection.jdbc包的类
 		Connection conn = null;
 		
 		// 定义SQL语句执行句柄：Statement对象
@@ -73,7 +73,7 @@ public class JdbcCRUD {
 			// 需要给方法传入三个参数，包括url、user、password
 			// 其中url就是有特定格式的数据库连接串，包括“主协议:子协议://主机名:端口号//数据库”
 			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/spark_project", 
+					"jdbc:connection://localhost:3306/spark_project",
 					"root", 
 					"root");  
 			
@@ -119,7 +119,7 @@ public class JdbcCRUD {
 			Class.forName("com.mysql.jdbc.Driver");  
 			
 			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/spark_project", 
+					"jdbc:connection://localhost:3306/spark_project",
 					"root", 
 					"root"); 
 			stmt = conn.createStatement();
@@ -155,7 +155,7 @@ public class JdbcCRUD {
 			Class.forName("com.mysql.jdbc.Driver");  
 			
 			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/spark_project", 
+					"jdbc:connection://localhost:3306/spark_project",
 					"root", 
 					"root"); 
 			stmt = conn.createStatement();
@@ -195,7 +195,7 @@ public class JdbcCRUD {
 			Class.forName("com.mysql.jdbc.Driver");  
 			
 			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/spark_project", 
+					"jdbc:connection://localhost:3306/spark_project",
 					"root", 
 					"root"); 
 			stmt = conn.createStatement();
@@ -260,7 +260,7 @@ public class JdbcCRUD {
 			Class.forName("com.mysql.jdbc.Driver");  
 			
 			conn = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/spark_project?characterEncoding=utf8", 
+					"jdbc:connection://localhost:3306/spark_project?characterEncoding=utf8",
 					"root", 
 					"root");  
 			

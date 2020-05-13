@@ -1,6 +1,7 @@
 package org.clm.demo;
 
 import org.clm.demo.globaluser.CurrentUserMethodArgumentResolver;
+import org.clm.demo.lanjieqi.AAA;
 import org.clm.demo.lanjieqi.AuthenticationInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,6 +25,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
     //自定义的拦截器
     @Autowired
     private AuthenticationInterceptor authenticationInterceptor;
+    //@Autowired
+    //private AAA aaa;
 
     //参数解析器
     @Autowired
@@ -43,8 +46,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
                     .excludePathPatterns("/userCon/login")  //excludePathPatterns(),设置不拦截的路径
                     .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**","/dev/swagger-ui.html/**")
                     .addPathPatterns("/**");
+
+//            registry.addInterceptor(aaa)
+//                    .excludePathPatterns("/userCon/login")  //excludePathPatterns(),设置不拦截的路径
+//                    .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**","/dev/swagger-ui.html/**")
+//                    .addPathPatterns("/**");
         }else{
             //dev
+
         }
     }
 

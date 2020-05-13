@@ -20,8 +20,8 @@
 
     <!--配置参数-->
     <!--<properties>
-        <property name="driver" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/mytable"/>
+        <property name="driver" value="com.connection.jdbc.Driver"/>
+        <property name="url" value="jdbc:connection://localhost:3306/mytable"/>
         <property name="username" value="root"/>
         <property name="password" value="root"/>
     </properties>-->

@@ -7,11 +7,16 @@ spring:
     active: dev #调用application-dev.yml 如果写的是pro，调用的就是application-pro.yml
   devtools:
     restart:
-      enabled: true   #开启热部署
+      enabled: true   #开启热部署    热部署没有用
+      additional-paths: src/main/java #重启目录
+      exclude: WEB-INF/**
+#    freemarker:
+#      cache: false
   datasource: #primary和secondary为两个数据源，这两个对应的包下，可以调用对应的库
     #    primary:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/springbootdb1?useUnicode=true&characterEncoding=UTF-8&createDatabaseIfNotExist=true
+    #url: jdbc:mysql://127.0.0.1:3306/springbootdb1?useUnicode=true&characterEncoding=UTF-8&createDatabaseIfNotExist=true
+    url: jdbc:mysql://127.0.0.1:3306/springbootdb1
     password: root
     username: root
   #    secondary:
@@ -25,6 +30,9 @@ spring:
     show-sql: true
   application:
     name: springbootdemo  #配置应用的名称
+  security:
+    basic:
+      enabled: false      #springSecurity启动的时候暂时不开启
 
 #这个参数设置为false后，spring-boot-starter-actuator ，用户才能通过浏览器访问到程序运行的状态信息
 management:
@@ -38,8 +46,13 @@ management:
     health:
       show-details: always   #显示健康具体信息  默认不会显示详细信息,(好像没用啊)
 
-#登录token存到session：0，存到redis：1
+#登录token存到session：0，存到redis：1     该功能未实现
 saveTokenLocation: 0
+
+
+
+
+
 
 
 

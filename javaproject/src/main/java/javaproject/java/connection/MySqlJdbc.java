@@ -1,15 +1,15 @@
-package javaproject.java.mysql;
+package javaproject.java.connection;
 
 import java.sql.*;
 
 public class MySqlJdbc {
     // MySQL 8.0 以下版本 - JDBC 驱动名及数据库 URL
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/RUNOOB";
+    static final String JDBC_DRIVER = "com.connection.jdbc.Driver";
+    static final String DB_URL = "jdbc:connection://localhost:3306/RUNOOB";
 
     // MySQL 8.0 以上版本 - JDBC 驱动名及数据库 URL
-    //static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    //static final String DB_URL = "jdbc:mysql://localhost:3306/RUNOOB?useSSL=false&serverTimezone=UTC";
+    //static final String JDBC_DRIVER = "com.connection.cj.jdbc.Driver";
+    //static final String DB_URL = "jdbc:connection://localhost:3306/RUNOOB?useSSL=false&serverTimezone=UTC";
 
 
     // 数据库的用户名与密码，需要根据自己的设置

@@ -8,8 +8,8 @@ import java.sql.SQLException;
 
 public class OdpsTest {
 	public static void main(String[] args) {
-		String driver = "com.mysql.jdbc.Driver";  
-        String url = "jdbc:mysql://127.0.0.1:3306/mysql?useUnicode=true&characterEncoding=UTF-8&createDatabaseIfNotExist=true";  
+		String driver = "com.connection.jdbc.Driver";
+        String url = "jdbc:connection://127.0.0.1:3306/connection?useUnicode=true&characterEncoding=UTF-8&createDatabaseIfNotExist=true";
         String user = "root";  
         String password = "root";  
   
@@ -18,7 +18,7 @@ public class OdpsTest {
 			Connection conn = DriverManager.getConnection(url, user, password); 
 			
 			DatabaseMetaData dbMetData = conn.getMetaData();  
-	        // mysql convertDatabaseCharsetType null  
+	        // connection convertDatabaseCharsetType null
 	        ResultSet rs = dbMetData.getTables("null", "null", "wc_table",new String[] {"TABLE"});
 	  
 	        while (rs.next()) {  
@@ -57,7 +57,7 @@ public class OdpsTest {
 	
 	public void getTables(Connection conn) throws SQLException {  
         DatabaseMetaData dbMetData = conn.getMetaData();  
-        // mysql convertDatabaseCharsetType null  
+        // connection convertDatabaseCharsetType null
         ResultSet rs = dbMetData.getTables("null", "null", "wc_table",new String[] {"TABLE"});
   
         while (rs.next()) {  

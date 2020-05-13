@@ -6,6 +6,7 @@ import org.clm.demo.mvc.primiary.dao.StandardRepository;
 import org.clm.demo.mvc.primiary.entity.Standard;
 import org.clm.demo.mvc.primiary.serviceinterface.IStandService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -16,15 +17,38 @@ import java.util.Optional;
 
 /**
  * 注释的都是没测过的
+ *
+ * @CacheConfig 配置当前类，全局的缓存设置，cacheNames成全局的缓存的名字（就像一个缓存数组，取了个名字）。
  */
 @Slf4j
 @Service
+@CacheConfig(cacheNames="standardServiceCache")
 public class StandardService implements IStandService {
 
     @Autowired
     StandardRepository standardRepository;
 
+    /**
+     * @Cacheable 和 @CacheEvict分别在getAllStandard  和addStandard上，意思是：
+     * 查找所有std时候从缓存拿，添加一条记录后删除这个缓存。下次查所有std就会查库，并把数据重新放一份到缓存
+     * @return
+     */
     @Override
+    @Cacheable(key="#root.target.getAllStandardCacheName()")
+    public List<Standard> getAllStandard() {
+        return standardRepository.findAll();
+    }
+
+    /**
+     * 这个方法，就是为了给getAllStandard的缓存一个key，可以让其他方法拿到这个key
+     * @return
+     */
+    public String getAllStandardCacheName(){
+        return "aaa";
+    }
+
+    @Override
+    @CacheEvict(key="#root.target.getAllStandardCacheName()")
     public void addStandard(Standard standard) {
         standardRepository.save(standard);
     }
@@ -37,14 +61,24 @@ public class StandardService implements IStandService {
         standardRepository.deleteById(key);
     }
 
+    /**
+     * @CachePut 先调用目标方法，再将目标方法的结果缓存起来
+     * 该方法一定要有结果，要有返回值，不然存到缓存里的就是空的东西了
+     *
+     * @param standard
+     * @return
+     */
     @Transactional
     @Override
-    public void updateStandard(Standard standard) {
+    @CachePut(key = "#standard.id+'_'+#standard.version")
+    public Standard updateStandard(Standard standard) {
         //standardRepository.save(standard);
-        standardRepository.updateStandard(standard.getName(),standard.getId());
+        standardRepository.updateStandard(standard.getName(), standard.getId());
+        return standard;
     }
 
     @Override
+    @Cacheable(key = "#id+'_'+#version")
     public Standard findStandardByIdVersion(String id, String version) {
         StandardPrimiaryKey key = new StandardPrimiaryKey();
         key.setId(id);
@@ -59,6 +93,7 @@ public class StandardService implements IStandService {
         return standardRepository.findStandardByIdName(id,name);
     }
 
+
     /**
      * jpa 分页查询
      */
@@ -72,11 +107,11 @@ public class StandardService implements IStandService {
 
         all.stream().forEach(s -> System.out.println(s.toString()));
 
-        System.out.println("【TotalPages】"  + all.get());
-        System.out.println("【totalElements】"  + all.getTotalElements());
-        System.out.println("【Number】"  + all.getNumber());
-        System.out.println("【Size】"  + all.getSize());
-        System.out.println("【NumberOfElements】"  + all.getNumberOfElements());
+        log.info("【TotalPages】"  + all.get());
+        log.info("【totalElements】"  + all.getTotalElements());
+        log.info("【Number】"  + all.getNumber());
+        log.info("【Size】"  + all.getSize());
+        log.info("【NumberOfElements】"  + all.getNumberOfElements());
 
 
         return standardList;

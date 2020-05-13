@@ -6,9 +6,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 public interface IStandService {
-    public void addStandard(@RequestBody Standard standard);
-    public void delStandard(@PathVariable String id, @PathVariable String version);
-    public void updateStandard(@RequestBody Standard standard);
-    public Standard findStandardByIdVersion(@PathVariable String id,@PathVariable String version);
-    public List<Standard> findStandardByIdName(@PathVariable String id, @RequestBody String version);
+    void addStandard(@RequestBody Standard standard);
+    void delStandard(@PathVariable String id, @PathVariable String version);
+    Standard updateStandard(@RequestBody Standard standard);
+    Standard findStandardByIdVersion(@PathVariable String id,@PathVariable String version);
+    List<Standard> findStandardByIdName(@PathVariable String id, @RequestBody String version);
+    List<Standard> getAllStandard();
 }
