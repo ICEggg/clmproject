@@ -1,4 +1,4 @@
-package javaproject.interviewquestion.javareferencetype;
+package javaproject.interviewquestion;
 
 /**
  * 重写object的finalize方法

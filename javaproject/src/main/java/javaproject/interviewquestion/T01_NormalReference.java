@@ -1,4 +1,4 @@
-package javaproject.interviewquestion.javareferencetype;
+package javaproject.interviewquestion;
 
 import java.io.IOException;
 

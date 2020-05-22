@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 这个类 为了测试复合主键
@@ -66,5 +67,13 @@ public class StandardController {
         log.info(standardList.toString());
         return response;
     }
+
+    @PostMapping(value = "/aaa")
+    public void aaa(@RequestBody JSONObject paramObj){
+        System.out.println("----------------"+paramObj.getString("name"));
+        System.out.println("----------------"+paramObj.getString("id"));
+        System.out.println("----------------"+paramObj.getJSONArray("location"));
+    }
+
 
 }
