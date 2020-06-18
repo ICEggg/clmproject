@@ -1,4 +1,4 @@
-package javaproject.interviewquestion.javareferencetype;
+package javaproject.interviewquestion;
 
 import java.lang.ref.PhantomReference;
 import java.lang.ref.Reference;
