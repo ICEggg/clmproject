@@ -1,4 +1,4 @@
-package javaproject.thread.countdownlatch;
+package javaproject.thread.current;
 
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;

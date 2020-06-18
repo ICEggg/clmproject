@@ -13,7 +13,7 @@ import java.util.List;
 @Data
 public class BaseResponse<T> {
 	
-	private ResultCode resultCode;	//结果状态码
+	private int resultCode;	//结果状态码
 	
 	//private List<T> data;			//数据集
 

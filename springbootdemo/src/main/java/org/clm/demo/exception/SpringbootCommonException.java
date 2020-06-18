@@ -35,7 +35,7 @@ public class SpringbootCommonException {
 
         BaseResponse response = new BaseResponse();
         response.setMessage(e.getMessage());
-        response.setResultCode(ResultCode.RESULT_ERROR);
+        response.setResultCode(ResultCode.RESULT_ERROR.getCode());
 
         return response;
     }
@@ -53,7 +53,7 @@ public class SpringbootCommonException {
 
         BaseResponse response = new BaseResponse();
         response.setMessage(e.getMessage());
-        response.setResultCode(ResultCode.RESULT_ERROR);
+        response.setResultCode(ResultCode.RESULT_ERROR.getCode());
 
         return response;
     }

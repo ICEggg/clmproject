@@ -2,6 +2,9 @@ package javaproject.thread.pool;
 
 import java.util.concurrent.Executor;
 
+/**
+ * Executor 是所有线程池的最基本的接口
+ */
 public class T01_MyExecutor implements Executor {
     @Override
     public void execute(Runnable command) {

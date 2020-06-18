@@ -65,6 +65,24 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
 
+
+    /**
+     * 增加跨域设置
+     * @param registry
+     */
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        //
+        registry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")
+                .allowCredentials(true)
+                .allowedHeaders("*")
+                .maxAge(3600);
+        WebMvcConfigurer.super.addCorsMappings(registry);
+    }
+
+
     /*@Override
     protected void addInterceptors(InterceptorRegistry registry) {
         if("pro".equals(active)){
@@ -88,22 +106,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/webjars/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/");
     }
+*/
 
 
-    *//**
-     * 增加跨域设置          未测试
-     * @param registry
-     *//*
-    @Override
-    protected void addCorsMappings(CorsRegistry registry) {
-        //
-        registry.addMapping("/**")
-                .allowedOrigins("http://localhost:3088")
-                .allowedMethods("POST", "GET", "PUT", "OPTIONS", "DELETE")
-                .allowCredentials(true)
-                .allowedHeaders("*")
-                .maxAge(3600);
-        super.addCorsMappings(registry);
-    }*/
 
 }

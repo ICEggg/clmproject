@@ -16,17 +16,24 @@ public class T03_Callable {
     }
 
     public static void main(String[] args) {
-        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        int threadNum = 5;
+        int result = 0;
+        ExecutorService executorService = Executors.newFixedThreadPool(threadNum);
         TestCallable test = new TestCallable();
-        Future<String> future = executorService.submit(test);
-        try {
-            String result = future.get();
-            System.out.println(result);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
+        for (int i = 0; i < threadNum; i++) {
+            try {
+                result += Integer.valueOf(executorService.submit(test).get());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
         }
+
+        System.out.println(result);
+
+
+        executorService.shutdown();
 
 
     }

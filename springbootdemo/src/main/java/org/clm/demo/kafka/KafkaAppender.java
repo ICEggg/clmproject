@@ -1,35 +1,39 @@
 package org.clm.demo.kafka;
 
 import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.AppenderBase;
 import ch.qos.logback.core.ConsoleAppender;
 import lombok.Data;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.Producer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.kafka.core.KafkaTemplate;
+
+import java.util.Properties;
 
 
 @Data
-public class KafkaAppender extends ConsoleAppender<ILoggingEvent> {
-    private KafkaTemplate<String, String> kafkaTemplate;
+public class KafkaAppender extends AppenderBase<ILoggingEvent> {
+    //private KafkaTemplate<String, String> kafkaTemplate;
 
+    private Producer producer;
+
+    private String bootstrapServers;
     @Override
     public void start() {
         super.start();
-    }
+//            Properties props = new Properties();
+//            props.put("bootstrap.servers", bootstrapServers);
+//            producer = new KafkaProducer(props);
+
+        }
 
 
     @Override
     protected void append(ILoggingEvent eventObject) {
-        if (kafkaTemplate != null){
-            kafkaTemplate.send("test", eventObject.getFormattedMessage());
-        }
-
-        /*else if (SpringContextHolder.applicationContext != null){
-            // 配置加载完毕发送消息到Kafka SpringContextHolder获取spring上下文（这个代码就不贴了）
-            kafkaTemplate = (KafkaTemplate<String, String>)SpringContextHolder.getBean("kafkaTemplate");
-            kafkaTemplate.send("test", eventObject.getFormattedMessage());
-        }*/
-
-
-
+//        String msg = eventObject.getFormattedMessage();
+//        ProducerRecord record = new ProducerRecord("topic",msg);
+//        producer.send(record);
     }
 
 }

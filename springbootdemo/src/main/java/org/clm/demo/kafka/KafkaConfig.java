@@ -40,7 +40,7 @@ public class KafkaConfig {
         return new DefaultKafkaProducerFactory(this.producerConfigs());
     }
 
-    @Bean
+    //@Bean
     public KafkaTemplate<String, String> kafkaTemplate() {
         KafkaTemplate kafkaTemplate = new KafkaTemplate(this.producerFactory());
         kafkaTemplate.send("test", "连接到Kafka。。。。。。。");

@@ -2,8 +2,10 @@ package javaproject.thread.pool;
 
 import java.util.concurrent.*;
 
+
 public class T06_Future {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
+        //该方法 接收的是一个callable
         FutureTask<Integer> task = new FutureTask<>(()->{
             TimeUnit.MILLISECONDS.sleep(1000);
             return 1000;

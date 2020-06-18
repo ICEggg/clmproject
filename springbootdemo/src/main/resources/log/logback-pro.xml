@@ -54,18 +54,19 @@
     </appender>
 
     <!--日志输出到kafka的appender-->
-    <appender name="kafkaAppender" class="org.clm.demo.kafka.KafkaAppender">
-        <encoder>
-            <pattern>
-                %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n
-            </pattern>
-        </encoder>
-    </appender>
+<!--    <appender name="kafkaAppender" class="org.clm.demo.kafka.KafkaAppender">-->
+<!--        <bootstrapServers>10.41.1.112:9092</bootstrapServers>-->
+<!--        <encoder>-->
+<!--            <pattern>-->
+<!--                %d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{50} - %msg%n-->
+<!--            </pattern>-->
+<!--        </encoder>-->
+<!--    </appender>-->
 
     <root level="info">
         <appender-ref ref="consoleLog"/>
         <appender-ref ref="fileInfoLog"/>
         <appender-ref ref="fileErrorLog"/>
-        <appender-ref ref="kafkaAppender" />
+<!--        <appender-ref ref="kafkaAppender" />-->
     </root>
 </configuration>

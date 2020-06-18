@@ -1,10 +1,6 @@
 package org.clm.demo.security;
 
 
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
  *  spring security
@@ -12,8 +8,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  *
  *
  */
-@Configuration
-public class MySecurityConfig extends WebSecurityConfigurerAdapter {
+//@Configuration
+public class MySecurityConfig {/*extends WebSecurityConfigurerAdapter {
 
 
     @Override
@@ -39,5 +35,5 @@ public class MySecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("lisi").password("123456").roles("VIP2","VIP3")
                 .and()
                 .withUser("wangwu").password("123456").roles("VIP1","VIP3");
-    }
+    }*/
 }

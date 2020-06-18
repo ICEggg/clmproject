@@ -78,7 +78,7 @@ public class StandardController {
         BaseResponse<Standard> response = new BaseResponse<>();
         Standard resultStandard = standardService.updateStandard(standard);
         response.setData(resultStandard);
-        response.setResultCode(ResultCode.RESULT_SUCCESS);
+        response.setResultCode(ResultCode.RESULT_SUCCESS.getCode());
         return response;
     }
 
@@ -92,7 +92,7 @@ public class StandardController {
         BaseResponse<Standard> response = new BaseResponse<>();
         Standard standard = standardService.findStandardByIdVersion(id, version);
         response.setData(standard);
-        response.setResultCode(ResultCode.RESULT_SUCCESS);
+        response.setResultCode(ResultCode.RESULT_SUCCESS.getCode());
         log.info(standard.toString());
         return response;
     }

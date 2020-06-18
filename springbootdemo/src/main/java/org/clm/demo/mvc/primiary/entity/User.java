@@ -9,6 +9,8 @@ import javax.persistence.*;
 import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
+import java.util.Set;
 
 @Entity(name = "user")
 @Data
@@ -29,7 +31,18 @@ public class User implements Serializable {
     @Column
     private String password;
 
+    @Transient
+    private List<Role> roleList;
+    @Transient
+    private Set<Menu> menuList;
+
     public User(@NotNull(message = "用户名不能为空") String username, @NotNull(message = "密码不能为空") String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(String id, @NotNull(message = "用户名不能为空") String username, @NotNull(message = "密码不能为空") String password) {
+        Id = id;
         this.username = username;
         this.password = password;
     }

@@ -2,12 +2,7 @@ package org.clm.demo.entity;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
-/** 
- * @ClassName: ResultCode 
- * @Description: REST结果实体类
- * @Author 梅宏振 
- * @Date 2015年2月27日-上午9:54:10
- */
+
 @XmlRootElement
 public enum ResultCode {
 
