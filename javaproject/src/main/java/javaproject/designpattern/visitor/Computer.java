@@ -12,7 +12,7 @@ import java.sql.Driver;
  * 这样还有用户来的时候，就不需要修改原来的代码了。
  *
  * 问：如果电脑配件增加了，那不还是要修改原来的代码么？？？
- * 遇到这种情况，就不适合用观察者模式了
+ * 遇到这种情况，就不适合用访问者模式了
  */
 public class Computer {
     ComputerPart cpu = new CPU();

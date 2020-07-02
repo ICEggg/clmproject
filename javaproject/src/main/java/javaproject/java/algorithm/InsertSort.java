@@ -4,7 +4,7 @@ package javaproject.java.algorithm;
  * 插入排序
  * 像打牌一样，从小到大排，拿到一张就放到合适的位置
  *
- * 比如1,5,3  1和5比：不动；然后3和5比，换位置；然后 3和1比，不动
+ * 比如按顺序插入1,5,3  1和5比：不动；然后3和5比，换位置；然后 3和1比，不动
  */
 public class InsertSort {
     public static void main(String[] args) {

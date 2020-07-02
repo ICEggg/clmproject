@@ -1,5 +1,7 @@
 package javaproject.designpattern.iterator;
 
+import java.util.ArrayList;
+
 /**
  * 迭代器模式
  * 构建可以动态扩展的容器，数组，链表

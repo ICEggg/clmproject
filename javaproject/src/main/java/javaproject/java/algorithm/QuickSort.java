@@ -30,6 +30,7 @@ public class QuickSort {
     }
 
     public static int partition(int[] array,int leftBound,int rightBound){
+        //一般选取最右边的为轴
         int pivot = array[rightBound];
 
         int left=leftBound;
